@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SFXLibrary : MonoBehaviour
 {
-    [SerializeField] private SFXData[] sfxList;
+    [SerializeField] private SFXGroup[] sfxList;
 
-    public SFXData GetSFXData(string sfxName) 
+    public SFXGroup GetSFXData(string sfxName) 
     {
         print(sfxList[0].name);
         return sfxList[0];

@@ -10,10 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ae78156027ec3340979bee7d8f8db36, type: 3}
-  m_Name: Player_Swim
+  m_Name: Player_Breathe
   m_EditorClassIdentifier: 
-  sfxVariations:
-  - clip: {fileID: 8300000, guid: de1104e0288349744bb4b7d99ad05109, type: 3}
-    volume: 1
-    minPitchShift: 0.8
-    maxPitchShift: 1.2
+  clip: {fileID: 0}

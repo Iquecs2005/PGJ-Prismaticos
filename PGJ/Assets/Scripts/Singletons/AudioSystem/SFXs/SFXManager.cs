@@ -4,20 +4,42 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    private static SFXLibrary sfxLibrary;
+    public static SFXManager instance;
 
-    private void Awake()
-    {
-        sfxLibrary = GetComponent<SFXLibrary>();
-    }
+    [SerializeField] private GameObject sfxSourcePrefab;
 
     private void Start()
     {
-        Play("Player_Swim");
+        instance = this;
     }
 
-    public static void Play(string sfxName) 
+    public static void PlaySFX(SFXGroup sfxGroup)
     {
-        sfxLibrary.GetSFXData(sfxName);
+        PlaySFX(sfxGroup, false, Vector3.zero);
+    }
+
+    public static void PlaySFX(SFXGroup sfxGroup, Vector3 pos, Transform parent = null) 
+    {
+        PlaySFX(sfxGroup, true, pos, parent);
+    }
+
+    private static void PlaySFX(SFXGroup sfxGroup, bool directional, Vector3 pos, Transform parent = null) 
+    {
+        if (instance == null)
+        {
+            Debug.LogError("SFXManager.PlaySFX: No SFXManager on scene. Please put GameManager Prefab on scene");
+            return;
+        }
+        if (sfxGroup == null)
+        {
+            Debug.LogError("SFXManager.PlaySFX: Trying to play Null SFX Data");
+            return;
+        }
+
+        SFXData data = sfxGroup.GetSFXData();
+        if (parent != null)
+            pos += parent.position;
+        GameObject source = Instantiate(instance.sfxSourcePrefab, pos, Quaternion.identity, parent);
+        source.GetComponent<SFXSource>().Play(data, directional);
     }
 }
