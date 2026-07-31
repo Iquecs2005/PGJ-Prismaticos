@@ -23,22 +23,33 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float knifeCooldown = 0.4f;
     [SerializeField] private LayerMask hittableLayers = ~0;
 
-    public int CurrentAmmo { get; private set; }
+    [Header("Knife Visual")]
+    [SerializeField] private GameObject knifeVisual;
+    [SerializeField] private float knifeVisualDuration = 0.15f;
 
+    public int CurrentAmmo { get; private set; }
     private PlayerController controller;
     private float harpoonCdTimer;
     private float knifeCdTimer;
+    private float knifeVisualTimer;
 
     void Awake()
     {
         controller = GetComponent<PlayerController>();
-        CurrentAmmo = startingAmmo;
+        CurrentAmmo = startingAmmo;  
+        if (knifeVisual != null) knifeVisual.SetActive(false);
     }
-
     void Update()
     {
         if (harpoonCdTimer > 0f) harpoonCdTimer -= Time.deltaTime;
         if (knifeCdTimer > 0f) knifeCdTimer -= Time.deltaTime;
+
+        if (knifeVisualTimer > 0f)
+        {
+            knifeVisualTimer -= Time.deltaTime;
+            if (knifeVisualTimer <= 0f && knifeVisual != null)
+                knifeVisual.SetActive(false);
+        }
     }
 
     public void AddAmmo(int amount)
@@ -63,7 +74,6 @@ public class PlayerAttack : MonoBehaviour
         CurrentAmmo--;
         harpoonCdTimer = harpoonCooldown;
     }
-
     public void SwingKnife(InputAction.CallbackContext context)
     {
         if (!context.started) return;
@@ -73,6 +83,15 @@ public class PlayerAttack : MonoBehaviour
         controller.FaceTowards(dir.x);
 
         Vector2 hitCenter = (Vector2)transform.position + dir * knifeRange;
+
+        if (knifeVisual != null)
+        {
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            knifeVisual.transform.SetPositionAndRotation(hitCenter, Quaternion.Euler(0f, 0f, angle));
+            knifeVisual.SetActive(true);
+            knifeVisualTimer = knifeVisualDuration;
+        }
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(hitCenter, knifeRadius, hittableLayers);
         foreach (Collider2D hit in hits)
         {
@@ -84,7 +103,6 @@ public class PlayerAttack : MonoBehaviour
 
         knifeCdTimer = knifeCooldown;
     }
-
     void OnDrawGizmosSelected()
     {
         Vector3 dir = (Application.isPlaying && controller != null)
