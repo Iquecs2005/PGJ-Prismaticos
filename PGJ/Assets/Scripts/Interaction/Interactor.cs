@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Interactor : MonoBehaviour
 {
     [Header("Eventos de UI (prompt)")]
-    [SerializeField] private UnityEvent<bool, string> onInteractableChanged;
+    [SerializeField] private UnityEvent<IInteractable> onInteractableChanged;
 
     private readonly List<IInteractable> inRange = new List<IInteractable>();
 
@@ -80,8 +80,6 @@ public class Interactor : MonoBehaviour
     private void RefreshPrompt()
     {
         IInteractable target = GetNearestUsable();
-        bool hasTarget = target != null;
-        string prompt = hasTarget ? target.InteractPrompt : "";
-        onInteractableChanged?.Invoke(hasTarget, prompt);
+        onInteractableChanged?.Invoke(target);
     }
 }

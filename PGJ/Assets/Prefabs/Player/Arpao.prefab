@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4954451419356348055}
   - component: {fileID: 6691789327882008110}
   - component: {fileID: 2403302915058885502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arpao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
