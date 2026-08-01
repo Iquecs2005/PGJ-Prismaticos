@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class HealthController : MonoBehaviour
     public int CurrentHealth { get; protected set; }
     public bool IsDead => CurrentHealth <= 0;
 
-    public event Action<int> OnDamageTaken;   
+    public UnityEvent<int> OnDamageTaken;   
     public event Action<int> OnHealed;       
     public event Action OnDeath;
 

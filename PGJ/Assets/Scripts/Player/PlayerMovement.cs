@@ -11,11 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float waterDrag = 4f;
     [SerializeField] private float idleDrag = 6f;
 
-    [Header("Animação?")]
-    [SerializeField] private Animator animator;
-
-    private static readonly int SpeedHash = Animator.StringToHash("speed");
-
     private PlayerController controller;
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -28,12 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        rb.gravityScale = 0f;
         rb.drag = waterDrag;
-    }
-    public void Move(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
     }
 
     void FixedUpdate()
@@ -53,9 +43,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (animator != null)
-            animator.SetFloat(SpeedHash, rb.velocity.magnitude);
         if (!controller.MovementLocked && Mathf.Abs(moveInput.x) > 0.01f)
             controller.FaceTowards(moveInput.x);
     }
+
+    //public void SetMoveInput(Vector2 moveInput)
+    //{
+    //}
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+        print(moveInput);
+    }
+
 }
