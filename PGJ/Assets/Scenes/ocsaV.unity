@@ -728,17 +728,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
   m_PrefabInstance: {fileID: 5851844800830248494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1884655230 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3962531401432698844, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
-  m_PrefabInstance: {fileID: 5851844800830248494}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884655228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cdf1ee5934033d4d8cf2594c0a633f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1884655231 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 500102234690487811, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
@@ -807,9 +796,9 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1884655230}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: FireHarpoon
+      - m_Target: {fileID: 1884655241}
+        m_TargetAssemblyTypeName: HarpoonAttack, Assembly-CSharp
+        m_MethodName: Fire
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -823,9 +812,9 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1884655230}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: SwingKnife
+      - m_Target: {fileID: 1884655242}
+        m_TargetAssemblyTypeName: KnifeAttack, Assembly-CSharp
+        m_MethodName: Swing
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -896,17 +885,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshair: {fileID: 1151278325}
   hideSystemCursor: 1
---- !u!114 &1884655239 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
-  m_PrefabInstance: {fileID: 5851844800830248494}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884655228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe09bb97a9ecacd468386376b95e05e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1884655240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,6 +901,45 @@ MonoBehaviour:
   col: {fileID: 0}
   spriteRenderer: {fileID: 0}
   cam: {fileID: 0}
+--- !u!114 &1884655241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884655228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6bc32bd22c73d44a7a7fb0d74e0387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harpoonPrefab: {fileID: 2403302915058885502, guid: 2dd1ebbd6a02d0d429d731449c1ed1d8, type: 3}
+  firePoint: {fileID: 1991128610}
+  speed: 18
+  damage: 5
+  cooldown: 0.35
+  startingAmmo: 3
+--- !u!114 &1884655242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884655228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7df5d7b3e93f54f96f5b80b43a8e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1.2
+  radius: 0.6
+  damage: 3
+  cooldown: 0.4
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  knifeVisual: {fileID: 785200739}
+  visualDuration: 0.15
 --- !u!1 &1891353761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,36 +1314,52 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnHealed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnHealed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1884655239}
+      objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Heal
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HealthController, Assembly-CSharp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3962531401432698844, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: firePoint
@@ -1403,6 +1436,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5355945298459192107, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
     - {fileID: 667754616163940729, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+    - {fileID: 3962531401432698844, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1204561731332380637, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
@@ -1424,6 +1458,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1884655240}
+    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1884655242}
+    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1884655241}
   m_SourcePrefab: {fileID: 100100000, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
