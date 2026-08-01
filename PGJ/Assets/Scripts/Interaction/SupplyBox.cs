@@ -2,13 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// Caixa configuravel. Ao interagir (tecla E), trava o player, "abre" durante
-/// um tempo, spawna 1+ itens coletaveis (prefab de Comida / ICollectible) e
-/// libera o player. Pode ser de uso unico ou reutilizavel.
-///
-/// Requer um Collider2D marcado como "Is Trigger" para o Interactor detectar.
-/// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class SupplyBox : MonoBehaviour, IInteractable
 {
@@ -40,19 +33,16 @@ public class SupplyBox : MonoBehaviour, IInteractable
     private bool used;
     private float cooldownTimer;
 
-    // --- IInteractable ---
     public bool CanInteract => !isBusy && !(singleUse && used) && cooldownTimer <= 0f;
     public string InteractPrompt => prompt;
 
     public void Interact(GameObject interactor)
     {
-        // DEBUG 4: confirma que a caixa recebeu o Interact.
         Debug.Log($"[SupplyBox] Interact chamado. CanInteract={CanInteract} (isBusy={isBusy}, used={used}, cd={cooldownTimer:0.00})", this);
 
         if (!CanInteract) return;
         StartCoroutine(OpenRoutine(interactor));
     }
-    // ---------------------
 
     private void Update()
     {
@@ -63,10 +53,6 @@ public class SupplyBox : MonoBehaviour, IInteractable
     private IEnumerator OpenRoutine(GameObject interactor)
     {
         isBusy = true;
-
-        // Trava o movimento do player, se ele tiver PlayerController.
-        // GetComponentInParent: funciona mesmo se o Interactor estiver num filho
-        // (ex: no objeto "Collider") e o PlayerController na raiz do Player.
         PlayerController pc = interactor != null ? interactor.GetComponentInParent<PlayerController>() : null;
         if (pc != null) pc.SetMovementLocked(true);
 
@@ -76,8 +62,6 @@ public class SupplyBox : MonoBehaviour, IInteractable
             yield return new WaitForSeconds(openDuration);
 
         SpawnItems();
-
-        // Libera o player.
         if (pc != null) pc.SetMovementLocked(false);
 
         onOpenFinished?.Invoke();
@@ -104,7 +88,6 @@ public class SupplyBox : MonoBehaviour, IInteractable
         {
             Vector2 offset = Random.insideUnitCircle * spawnSpread;
             GameObject spawned = Instantiate(itemPrefab, origin + (Vector3)offset, Quaternion.identity);
-            // DEBUG 5: confirma o spawn e onde.
             Debug.Log($"[SupplyBox] Spawnou '{spawned.name}' em {spawned.transform.position}", spawned);
         }
     }

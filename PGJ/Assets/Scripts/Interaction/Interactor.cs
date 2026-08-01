@@ -13,7 +13,6 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // DEBUG 3: mostra tudo que entra no trigger.
         Debug.Log($"[Interactor] Trigger ENTER com '{other.name}'", other);
 
         var interactable = other.GetComponent<IInteractable>();
@@ -37,7 +36,6 @@ public class Interactor : MonoBehaviour
 
     public void OnInteractPressed()
     {
-        // DEBUG 2: confirma que o evento de input chegou ao Interactor.
         Debug.Log($"[Interactor] OnInteractPressed! Itens no alcance: {inRange.Count}");
 
         IInteractable target = GetNearestUsable();
