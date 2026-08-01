@@ -9,7 +9,6 @@ public class Comida : MonoBehaviour, ICollectible
 
     public void Collect()
     {
-        Debug.Log("Pegou a comida");
         Destroy(gameObject);
         OnFoodCollected?.Invoke();
     }

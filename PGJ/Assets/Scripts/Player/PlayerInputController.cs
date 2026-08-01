@@ -10,7 +10,8 @@ public class PlayerInputController : MonoBehaviour
     [field: SerializeField] public UnityEvent<Vector2> onMoveAction { get; private set; }
     [field: SerializeField] public UnityEvent<Vector2> onKnifeAction { get; private set; }
     [field: SerializeField] public UnityEvent<Vector2> onHarpoonAction { get; private set; }
-    [field: SerializeField] public UnityEvent onInteractAction { get; private set; }  
+    [field: SerializeField] public UnityEvent onInteractAction { get; private set; }
+    [field: SerializeField] public UnityEvent onInteractCanceled { get; private set; }
 
     public void MoveAction(InputAction.CallbackContext context)
     {
@@ -32,13 +33,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void InteractAction(InputAction.CallbackContext context)
     {
-        Debug.Log($"[Input] InteractAction phase={context.phase}");
-
         if (context.performed)
-        {
-            Debug.Log("[Input] Interact PERFORMED -> invocando onInteractAction");
             onInteractAction.Invoke();
-        }
+        else if (context.canceled)
+            onInteractCanceled.Invoke();
     }
 
     public Vector2 MouseWorldPosition()

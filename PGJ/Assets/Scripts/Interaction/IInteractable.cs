@@ -5,7 +5,8 @@ using UnityEngine;
 public interface IInteractable
 {
     bool CanInteract { get; }
-    string InteractPrompt { get; }
-
-    void Interact(GameObject interactor);
+    void OnFocusEnter();
+    void OnFocusExit();
+    void StartInteract(GameObject interactor);
+    void CancelInteract(GameObject interactor);
 }

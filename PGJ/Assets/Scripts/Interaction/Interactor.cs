@@ -10,17 +10,23 @@ public class Interactor : MonoBehaviour
     [SerializeField] private UnityEvent<IInteractable> onInteractableChanged;
 
     private readonly List<IInteractable> inRange = new List<IInteractable>();
+    private IInteractable focused;
+    private IInteractable holding;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"[Interactor] Trigger ENTER com '{other.name}'", other);
-
         var interactable = other.GetComponent<IInteractable>();
         if (interactable != null && !inRange.Contains(interactable))
-        {
             inRange.Add(interactable);
-            Debug.Log($"[Interactor] '{other.name}' e IInteractable -> adicionado. Total no alcance: {inRange.Count}");
-            RefreshPrompt();
+    }
+    private void Update()
+    {
+        IInteractable nearest = GetNearestUsable();
+        if (!ReferenceEquals(nearest, focused))
+        {
+            focused?.OnFocusExit();
+            focused = nearest;
+            focused?.OnFocusEnter();
         }
     }
 
@@ -36,18 +42,19 @@ public class Interactor : MonoBehaviour
 
     public void OnInteractPressed()
     {
-        Debug.Log($"[Interactor] OnInteractPressed! Itens no alcance: {inRange.Count}");
-
-        IInteractable target = GetNearestUsable();
-        if (target == null)
+        if (focused == null) return;
+        holding = focused;
+        holding.StartInteract(gameObject);
+    }
+    public void OnInteractReleased()
+    {
+        if (holding == null || (holding as MonoBehaviour) == null)
         {
-            Debug.LogWarning("[Interactor] Nenhum interativo usavel no alcance (target == null).");
+            holding = null;
             return;
         }
-
-        Debug.Log($"[Interactor] Interagindo com '{(target as MonoBehaviour).name}'");
-        target.Interact(gameObject);
-        RefreshPrompt();
+        holding.CancelInteract(gameObject);
+        holding = null;
     }
 
     private IInteractable GetNearestUsable()
