@@ -8,7 +8,7 @@ public class SFXManager : MonoBehaviour
 
     [SerializeField] private GameObject sfxSourcePrefab;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
     }
