@@ -16,10 +16,6 @@ public class SupplyBox : MonoBehaviour, IInteractable
     [SerializeField] private bool singleUse = true;
     [SerializeField] private float reuseCooldown = 2f;
 
-    [Header("Icone")]
-    [SerializeField] private GameObject icon;
-    [SerializeField] private Transform iconFill;
-
     [Header("Eventos")]
     [SerializeField] private UnityEvent onInteractStart;
     [SerializeField] private UnityEvent onInteractComplete;
@@ -33,44 +29,33 @@ public class SupplyBox : MonoBehaviour, IInteractable
 
     public bool CanInteract => !isBusy && !(singleUse && used) && cooldownTimer <= 0f;
 
-    private void Awake()
-    {
-        if (icon != null) icon.SetActive(false);
-        SetFill(0f);
-    }
     private void Update()
     {
         if (cooldownTimer > 0f)
             cooldownTimer -= Time.deltaTime;
     }
-    public void OnFocusEnter()
-    {
-        if (icon != null) icon.SetActive(true);
-    }
-    public void OnFocusExit()
-    {
-        if (icon != null) icon.SetActive(false);
-        SetFill(0f);
-    }
+
     public void StartInteract(GameObject interactor)
     {
         if (!CanInteract) return;
         routine = StartCoroutine(HoldRoutine(interactor));
     }
+
     public void CancelInteract(GameObject interactor)
     {
         if (!isBusy) return;
         if (routine != null) StopCoroutine(routine);
         routine = null;
         Unlock();
-        SetFill(0f);
         isBusy = false;
         onInteractCancel?.Invoke();
     }
+
     private IEnumerator HoldRoutine(GameObject interactor)
     {
         isBusy = true;
         onInteractStart?.Invoke();
+
         lockedPlayer = interactor != null ? interactor.GetComponentInParent<PlayerController>() : null;
         if (lockedPlayer != null) lockedPlayer.SetMovementLocked(true);
 
@@ -78,13 +63,11 @@ public class SupplyBox : MonoBehaviour, IInteractable
         while (t < holdDuration)
         {
             t += Time.deltaTime;
-            SetFill(t / holdDuration);
             yield return null;
         }
 
         SpawnItems();
         Unlock();
-        SetFill(0f);
 
         used = true;
         cooldownTimer = reuseCooldown;
@@ -92,7 +75,6 @@ public class SupplyBox : MonoBehaviour, IInteractable
         routine = null;
         onInteractComplete?.Invoke();
 
-        if (icon != null) icon.SetActive(false);
         if (singleUse) Destroy(gameObject);
     }
 
@@ -100,14 +82,6 @@ public class SupplyBox : MonoBehaviour, IInteractable
     {
         if (lockedPlayer != null) lockedPlayer.SetMovementLocked(false);
         lockedPlayer = null;
-    }
-
-    private void SetFill(float value01)
-    {
-        if (iconFill == null) return;
-        Vector3 s = iconFill.localScale;
-        s.y = Mathf.Clamp01(value01);
-        iconFill.localScale = s;
     }
 
     private void SpawnItems()

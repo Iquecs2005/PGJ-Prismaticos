@@ -6,7 +6,7 @@ using System;
 
 public class Comida : MonoBehaviour, ICollectible
 {
-    public static event Action OnCoinCollected;
+    public static event Action OnComidaCollected;
 
     [Header("Saida da caixa")]
     [SerializeField] private float launchSpeed = 5f;
@@ -47,6 +47,6 @@ public class Comida : MonoBehaviour, ICollectible
     {
         if (noPickupTimer > 0f) return;
         Destroy(gameObject);
-        OnCoinCollected?.Invoke();
+        OnComidaCollected?.Invoke();
     }
 }
