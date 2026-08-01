@@ -513,10 +513,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7015666827802270903}
-  acceleration: 40
+  acceleration: 20
   maxSpeed: 8
   waterDrag: 4
-  idleDrag: 6
+  idleDrag: 3
 --- !u!114 &3642070343650777314
 MonoBehaviour:
   m_ObjectHideFlags: 0
