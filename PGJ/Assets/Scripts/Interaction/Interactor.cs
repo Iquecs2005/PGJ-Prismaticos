@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
+
 [RequireComponent(typeof(Collider2D))]
 public class Interactor : MonoBehaviour
 {
-    [Header("Input")]
-    [SerializeField] private InputActionReference interactAction;
-
     private readonly List<IInteractable> inRange = new List<IInteractable>();
     private IInteractable focused;
     private IInteractable holding;
+
     public Transform FocusedTarget
     {
         get
@@ -19,26 +17,15 @@ public class Interactor : MonoBehaviour
             return mono != null ? mono.transform : null;
         }
     }
-    private void OnEnable()
-    {
-        if (interactAction == null) return;
-        interactAction.action.performed += OnInteractPerformed;
-        interactAction.action.canceled += OnInteractCanceled;
-        interactAction.action.Enable();
-    }
-    private void OnDisable()
-    {
-        if (interactAction == null) return;
-        interactAction.action.performed -= OnInteractPerformed;
-        interactAction.action.canceled -= OnInteractCanceled;
-    }
-    private void OnInteractPerformed(InputAction.CallbackContext context)
+
+    public void OnInteractPerformed()
     {
         if (focused == null) return;
         holding = focused;
         holding.StartInteract(gameObject);
     }
-    private void OnInteractCanceled(InputAction.CallbackContext context)
+
+    public void OnInteractCanceled()
     {
         if (holding == null || (holding as MonoBehaviour) == null)
         {
@@ -48,6 +35,7 @@ public class Interactor : MonoBehaviour
         holding.CancelInteract(gameObject);
         holding = null;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         var interactable = other.GetComponent<IInteractable>();
@@ -60,10 +48,12 @@ public class Interactor : MonoBehaviour
         if (interactable != null)
             inRange.Remove(interactable);
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
         focused = GetNearestUsable();
     }
+
     private IInteractable GetNearestUsable()
     {
         IInteractable nearest = null;

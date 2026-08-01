@@ -59,12 +59,7 @@ public class SupplyBox : MonoBehaviour, IInteractable
         lockedPlayer = interactor != null ? interactor.GetComponentInParent<PlayerController>() : null;
         if (lockedPlayer != null) lockedPlayer.SetMovementLocked(true);
 
-        float t = 0f;
-        while (t < holdDuration)
-        {
-            t += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(holdDuration);
 
         SpawnItems();
         Unlock();
