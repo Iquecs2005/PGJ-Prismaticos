@@ -10,6 +10,7 @@ public class PlayerInputController : MonoBehaviour
     [field: SerializeField] public UnityEvent<Vector2> onMoveAction { get; private set; }
     [field: SerializeField] public UnityEvent<Vector2> onKnifeAction { get; private set; }
     [field: SerializeField] public UnityEvent<Vector2> onHarpoonAction { get; private set; }
+    [field: SerializeField] public UnityEvent onInteractAction { get; private set; }   // <-- ESTA LINHA precisa existir
 
     public void MoveAction(InputAction.CallbackContext context)
     {
@@ -27,6 +28,19 @@ public class PlayerInputController : MonoBehaviour
     {
         if (context.started)
             onHarpoonAction.Invoke(MouseWorldPosition());
+    }
+
+    // Ligue a acao "Interact" (tecla E) do PlayerInput a este metodo.
+    public void InteractAction(InputAction.CallbackContext context)
+    {
+        // DEBUG 1: mostra se o input chega ate aqui.
+        Debug.Log($"[Input] InteractAction phase={context.phase}");
+
+        if (context.performed)
+        {
+            Debug.Log("[Input] Interact PERFORMED -> invocando onInteractAction");
+            onInteractAction.Invoke();
+        }
     }
 
     public Vector2 MouseWorldPosition()
