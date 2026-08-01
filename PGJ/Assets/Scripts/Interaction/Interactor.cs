@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
@@ -7,9 +8,13 @@ public class Interactor : MonoBehaviour
 {
     [Header("Input")]
     [SerializeField] private InputActionReference interactAction;
+    [Header("UI")]
+    [SerializeField] private UnityEvent<bool> onFocusChanged;
+
     private readonly List<IInteractable> inRange = new List<IInteractable>();
     private IInteractable focused;
     private IInteractable holding;
+
     private void OnEnable()
     {
         if (interactAction == null) return;
@@ -59,6 +64,7 @@ public class Interactor : MonoBehaviour
             focused?.OnFocusExit();
             focused = nearest;
             focused?.OnFocusEnter();
+            onFocusChanged?.Invoke(focused != null);
         }
     }
     private IInteractable GetNearestUsable()
@@ -69,14 +75,12 @@ public class Interactor : MonoBehaviour
         for (int i = inRange.Count - 1; i >= 0; i--)
         {
             IInteractable candidate = inRange[i];
-
             if (candidate == null || (candidate as MonoBehaviour) == null)
             {
                 inRange.RemoveAt(i);
                 continue;
             }
             if (!candidate.CanInteract) continue;
-
             var mono = candidate as MonoBehaviour;
             float dist = ((Vector2)mono.transform.position - (Vector2)transform.position).sqrMagnitude;
             if (dist < best)
