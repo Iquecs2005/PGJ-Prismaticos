@@ -6,20 +6,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Referencencias")]
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Collider2D col;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Camera cam;
-
-    public Rigidbody2D Rb => rb;
-    public Collider2D Col => col;
-    public SpriteRenderer SpriteRenderer => spriteRenderer;
+    [field: Header("Referencencias")]
+    [field: SerializeField] public Rigidbody2D rb { get; private set; }
+    [field: SerializeField] public Collider2D col { get; private set; }
+    [field: SerializeField] public SpriteRenderer spriteRenderer { get; private set; }
+    [field: SerializeField] private Camera cam;
 
     public bool MovementLocked { get; private set; }
     public bool IsFacingRight { get; private set; } = true;
-
-    private float originalScaleX;
 
     void Awake()
     {
@@ -27,8 +21,6 @@ public class PlayerController : MonoBehaviour
         if (col == null) col = GetComponent<Collider2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (cam == null) cam = Camera.main;
-
-        originalScaleX = Mathf.Abs(transform.localScale.x);
     }
 
     public Vector2 MouseWorldPosition()
@@ -56,8 +48,6 @@ public class PlayerController : MonoBehaviour
         if (faceRight == IsFacingRight) return;
 
         IsFacingRight = faceRight;
-        Vector3 s = transform.localScale;
-        s.x = faceRight ? originalScaleX : -originalScaleX;
-        transform.localScale = s;
+        spriteRenderer.flipX = !faceRight;
     }
 }

@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433609140}
   - component: {fileID: 433609141}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,36 +871,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1884655238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884655228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d429dbb267914814e87c07d39837c51d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 1151278325}
-  hideSystemCursor: 1
---- !u!114 &1884655240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884655228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 575570bb500630541aa6112f12e8a93b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  col: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  cam: {fileID: 0}
 --- !u!114 &1884655241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,11 +883,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6bc32bd22c73d44a7a7fb0d74e0387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1884655244}
   harpoonPrefab: {fileID: 2403302915058885502, guid: 2dd1ebbd6a02d0d429d731449c1ed1d8, type: 3}
   firePoint: {fileID: 1991128610}
   speed: 18
   damage: 5
   cooldown: 0.35
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 0
   startingAmmo: 3
 --- !u!114 &1884655242
 MonoBehaviour:
@@ -931,15 +905,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7df5d7b3e93f54f96f5b80b43a8e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1884655244}
   range: 1.2
   radius: 0.6
   damage: 3
   cooldown: 0.4
   hittableLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   knifeVisual: {fileID: 785200739}
   visualDuration: 0.15
+--- !u!114 &1884655244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7015666827802270903, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+  m_PrefabInstance: {fileID: 5851844800830248494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884655228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb2ccdb67edded47a077f0259791376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1891353761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1935920397}
   - component: {fileID: 1935920398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1991128610}
   - component: {fileID: 1991128609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,6 +1243,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 500102234690487811, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1884655244}
     - target: {fileID: 1204561731332380637, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1315,15 +1305,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1429,9 +1419,25 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 433609141}
+    - target: {fileID: 7015666827802270903, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <rb>k__BackingField
+      value: 
+      objectReference: {fileID: 1884655234}
+    - target: {fileID: 7015666827802270903, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <col>k__BackingField
+      value: 
+      objectReference: {fileID: 1935920398}
+    - target: {fileID: 7015666827802270903, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <spriteRenderer>k__BackingField
+      value: 
+      objectReference: {fileID: 433609141}
     - target: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5355945298459192107, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
@@ -1451,19 +1457,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1884655238}
-    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1884655237}
-    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1884655240}
-    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1884655242}
     - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1884655241}
+    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1884655237}
   m_SourcePrefab: {fileID: 100100000, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

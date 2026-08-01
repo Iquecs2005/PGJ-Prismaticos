@@ -23,7 +23,7 @@ public class HarpoonProjectile : MonoBehaviour
         col = GetComponent<Collider2D>();
     }
 
-    public void Launch(Vector2 direction, float speed, int damage, Collider2D ownerCol)
+    public void Launch(Vector2 direction, float speed, int damage, LayerMask hittableLayers)
     {
         this.damage = damage;
 
@@ -31,8 +31,7 @@ public class HarpoonProjectile : MonoBehaviour
         rb.velocity = direction.normalized * speed;
         rb.angularVelocity = 0f;
 
-        if (ownerCol != null && col != null)
-            Physics2D.IgnoreCollision(col, ownerCol);
+        rb.includeLayers = hittableLayers;
 
         SetLifetime(maxLifetime);
     }

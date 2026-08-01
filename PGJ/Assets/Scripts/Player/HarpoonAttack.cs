@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HarpoonAttack : PlayerHub
+public class HarpoonAttack : MonoBehaviour
 {
+    [SerializeField] private PlayerController controller;
+
     [Header("Arpão")]
     [SerializeField] private HarpoonProjectile harpoonPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float speed = 18f;
     [SerializeField] private int damage = 5;
     [SerializeField] private float cooldown = 0.35f;
+    [SerializeField] private LayerMask hittableLayers;
 
     [Header("Munição")]
     [SerializeField] private int startingAmmo = 3;
@@ -20,7 +23,7 @@ public class HarpoonAttack : PlayerHub
 
     private float cdTimer;
 
-    protected override void OnInit()
+    private void Start()
     {
         CurrentAmmo = startingAmmo;  
     }
@@ -40,17 +43,17 @@ public class HarpoonAttack : PlayerHub
     }
     public bool TryFire()
     {
-        if (!Initialized || OnCooldown || CurrentAmmo <= 0 || harpoonPrefab == null)
+        if (OnCooldown || CurrentAmmo <= 0 || harpoonPrefab == null)
             return false;
 
-        Vector2 dir = player.AimDirection();
-        player.FaceTowards(dir.x);
+        Vector2 dir = controller.AimDirection();
+        controller.FaceTowards(dir.x);
 
         Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         HarpoonProjectile harpoon = Instantiate(harpoonPrefab, spawnPos, Quaternion.Euler(0f, 0f, angle));
-        harpoon.Launch(dir, speed, damage, player.Col);
+        harpoon.Launch(dir, speed, damage, hittableLayers);
 
         CurrentAmmo--;
         cdTimer = cooldown;

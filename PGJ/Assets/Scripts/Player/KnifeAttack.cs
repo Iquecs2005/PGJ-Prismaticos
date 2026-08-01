@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class KnifeAttack : PlayerHub
+public class KnifeAttack : MonoBehaviour
 {
+    [SerializeField] private PlayerController controller;
+
     [Header("Faca")]
     [SerializeField] private float range = 1.2f;
     [SerializeField] private float radius = 0.6f;
@@ -20,7 +22,7 @@ public class KnifeAttack : PlayerHub
     private float cdTimer;
     private float visualTimer;
 
-    protected override void OnInit()
+    private void Start()
     {
         if (knifeVisual != null) knifeVisual.SetActive(false);
     }
@@ -42,12 +44,12 @@ public class KnifeAttack : PlayerHub
 
     public bool TrySwing()
     {
-        if (!Initialized || OnCooldown) return false;
+        if (OnCooldown) return false;
 
-        Vector2 dir = player.AimDirection();
-        player.FaceTowards(dir.x);
+        Vector2 dir = controller.AimDirection();
+        controller.FaceTowards(dir.x);
 
-        Vector2 hitCenter = (Vector2)player.transform.position + dir * range;
+        Vector2 hitCenter = (Vector2)transform.position + dir * range;
 
         if (knifeVisual != null)
         {
@@ -59,7 +61,7 @@ public class KnifeAttack : PlayerHub
         Collider2D[] hits = Physics2D.OverlapCircleAll(hitCenter, radius, hittableLayers);
         foreach (Collider2D hit in hits)
         {
-            if (hit == player.Col) continue;
+            if (hit == controller.col) continue;
             HealthController hc = hit.GetComponent<HealthController>()
                                   ?? hit.GetComponentInParent<HealthController>();
             if (hc != null) hc.TakeDamage(damage);
@@ -68,10 +70,11 @@ public class KnifeAttack : PlayerHub
         cdTimer = cooldown;
         return true;
     }
+
     void OnDrawGizmosSelected()
     {
-        Vector3 dir = (Application.isPlaying && Initialized)
-            ? (Vector3)player.AimDirection()
+        Vector3 dir = (Application.isPlaying)
+            ? (Vector3)controller.AimDirection()
             : transform.right;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + dir * range, radius);

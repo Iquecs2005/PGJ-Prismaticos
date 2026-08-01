@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class PlayerAim : PlayerHub
+public class PlayerAim : MonoBehaviour
 {
+    [SerializeField] private PlayerController controller;
+
     [Tooltip("Sprite em world-space que segue o mouse.")]
     [SerializeField] private Transform crosshair;
     [Tooltip("Esconder o cursor do Windows enquanto mira.")]
@@ -19,9 +21,9 @@ public class PlayerAim : PlayerHub
 
     void Update()
     {
-        if (!Initialized || crosshair == null) return;
+        if (crosshair == null) return;
 
-        Vector2 mouse = player.MouseWorldPosition();
+        Vector2 mouse = controller.MouseWorldPosition();
         crosshair.position = new Vector3(mouse.x, mouse.y, crosshair.position.z);
     }
 }

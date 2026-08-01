@@ -5,24 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private PlayerController controller;
+
     [Header("Nadada")]
     [SerializeField] private float acceleration = 40f;
     [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float waterDrag = 4f;
     [SerializeField] private float idleDrag = 6f;
 
-    private PlayerController controller;
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
-    void Awake()
-    {
-        controller = GetComponent<PlayerController>();
-        rb = controller.Rb;
-    }
-
     void Start()
     {
+        rb = controller.rb;
         rb.drag = waterDrag;
     }
 

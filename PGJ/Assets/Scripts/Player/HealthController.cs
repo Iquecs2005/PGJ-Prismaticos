@@ -13,21 +13,15 @@ public class HealthController : MonoBehaviour
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth { get; protected set; }
-    public bool IsDead => initialized && CurrentHealth <= 0;
+    public bool IsDead => CurrentHealth <= 0;
 
-    private bool initialized;
-
-    protected virtual void Awake() => EnsureInit();
-
-    private void EnsureInit()
+    private void Start()
     {
-        if (initialized) return;
         CurrentHealth = maxHealth;
-        initialized = true;
     }
+
     public virtual void TakeDamage(int amount)
     {
-        EnsureInit();
         if (amount <= 0 || IsDead) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
@@ -36,14 +30,15 @@ public class HealthController : MonoBehaviour
         if (CurrentHealth <= 0)
             Die();
     }
+
     public virtual void Heal(int amount)
     {
-        EnsureInit();
         if (amount <= 0 || IsDead) return;
 
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
         OnHealed?.Invoke(amount);
     }
+
     protected virtual void Die()
     {
         OnDeath?.Invoke();
