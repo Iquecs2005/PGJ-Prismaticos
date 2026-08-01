@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class HarpoonProjectile : MonoBehaviour
+public class HarpoonProjectile : HitboxController
 {
     [Header("Lifetime")]
     [Tooltip("Despawn de segurança se nunca acertar nada. <= 0 = nunca.")]
@@ -12,15 +12,22 @@ public class HarpoonProjectile : MonoBehaviour
     [SerializeField] private float lifeAfterStuck = 8f;
 
     private Rigidbody2D rb;
-    private Collider2D col;
-    private int damage;
     private bool stuck;
     private float timer = -1f;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
+    }
+
+    void Update()
+    {
+        if (timer < 0f) 
+            return;
+
+        timer -= Time.deltaTime;
+        if (timer <= 0f) 
+            Destroy(gameObject);
     }
 
     public void Launch(Vector2 direction, float speed, int damage, LayerMask hittableLayers)
@@ -36,25 +43,10 @@ public class HarpoonProjectile : MonoBehaviour
         SetLifetime(maxLifetime);
     }
 
-    void Update()
+    protected override void HandleCollisionHit(Collider2D collision)
     {
-        if (timer < 0f) return;
-        timer -= Time.deltaTime;
-        if (timer <= 0f) Destroy(gameObject);
-    }
-
-    void OnCollisionEnter2D(Collision2D collision) => HandleHit(collision.collider);
-    void OnTriggerEnter2D(Collider2D other) => HandleHit(other);
-
-    private void HandleHit(Collider2D other)
-    {
-        if (stuck) return;
-
-        HealthController hc = other.GetComponent<HealthController>()
-                              ?? other.GetComponentInParent<HealthController>();
-        if (hc != null) hc.TakeDamage(damage);
-
-        Stick(other.transform);
+        base.HandleCollisionHit(collision);
+        Stick(collision.transform);
     }
 
     private void Stick(Transform surface)
@@ -63,11 +55,12 @@ public class HarpoonProjectile : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.simulated = false;       
-        if (col != null) col.enabled = false;
+        hitboxCollider.enabled = false;
 
         transform.SetParent(surface, true);
 
         SetLifetime(lifeAfterStuck);    
     }
+
     private void SetLifetime(float seconds) => timer = seconds > 0f ? seconds : -1f;
 }

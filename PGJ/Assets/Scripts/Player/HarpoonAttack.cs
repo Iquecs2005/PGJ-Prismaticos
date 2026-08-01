@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class HarpoonAttack : MonoBehaviour
 {
@@ -32,31 +31,27 @@ public class HarpoonAttack : MonoBehaviour
     {
         if (cdTimer > 0f) cdTimer -= Time.deltaTime;
     }
+
     public void AddAmmo(int amount)
     {
         if (amount > 0) CurrentAmmo += amount;
     }
 
-    public void Fire(InputAction.CallbackContext context)
-    {
-        if (context.started) TryFire();
-    }
-    public bool TryFire()
+    public void FireHarpoon(Vector2 aimPosition)
     {
         if (OnCooldown || CurrentAmmo <= 0 || harpoonPrefab == null)
-            return false;
+            return;
 
-        Vector2 dir = controller.AimDirection();
+        Vector2 dir = (aimPosition - (Vector2)firePoint.position).normalized;
         controller.FaceTowards(dir.x);
 
-        Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        HarpoonProjectile harpoon = Instantiate(harpoonPrefab, spawnPos, Quaternion.Euler(0f, 0f, angle));
+        HarpoonProjectile harpoon = Instantiate(harpoonPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
         harpoon.Launch(dir, speed, damage, hittableLayers);
 
         CurrentAmmo--;
         cdTimer = cooldown;
-        return true;
+        return;
     }
 }

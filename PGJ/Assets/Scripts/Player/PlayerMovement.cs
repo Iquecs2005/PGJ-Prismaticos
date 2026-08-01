@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +23,22 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        ApplyMovement();
+    }
+
+    void Update()
+    {
+        if (!controller.MovementLocked && Mathf.Abs(moveInput.x) > 0.01f)
+            controller.FaceTowards(moveInput.x);
+    }
+
+    public void SetMoveInput(Vector2 moveInput) 
+    {
+        this.moveInput = moveInput;
+    }
+
+    public void ApplyMovement()
+    {
         Vector2 input = controller.MovementLocked ? Vector2.zero : moveInput;
 
         bool swimming = input.sqrMagnitude > 0.01f;
@@ -36,16 +51,4 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * maxSpeed;
         }
     }
-
-    void Update()
-    {
-        if (!controller.MovementLocked && Mathf.Abs(moveInput.x) > 0.01f)
-            controller.FaceTowards(moveInput.x);
-    }
-    public void Move(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-        print(moveInput);
-    }
-
 }
