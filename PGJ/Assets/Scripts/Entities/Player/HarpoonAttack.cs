@@ -43,7 +43,6 @@ public class HarpoonAttack : MonoBehaviour
             return;
 
         Vector2 dir = (aimPosition - (Vector2)firePoint.position).normalized;
-        controller.FaceTowards(dir.x);
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 

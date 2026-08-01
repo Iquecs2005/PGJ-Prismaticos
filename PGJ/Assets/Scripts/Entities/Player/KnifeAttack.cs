@@ -42,7 +42,6 @@ public class KnifeAttack : MonoBehaviour
         if (OnCooldown) return;
 
         Vector2 dir = (aimPosition - (Vector2)transform.position).normalized;
-        controller.FaceTowards(dir.x);
 
         Vector2 hitCenter = (Vector2)transform.position + dir * range;
 

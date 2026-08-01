@@ -26,12 +26,6 @@ public class PlayerMovement : MonoBehaviour
         ApplyMovement();
     }
 
-    void Update()
-    {
-        if (!controller.MovementLocked && Mathf.Abs(moveInput.x) > 0.01f)
-            controller.FaceTowards(moveInput.x);
-    }
-
     public void SetMoveInput(Vector2 moveInput) 
     {
         this.moveInput = moveInput;

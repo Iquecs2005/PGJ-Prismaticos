@@ -23,15 +23,4 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetMovementLocked(bool locked) => MovementLocked = locked;
-
-    public void FaceTowards(float xDirection)
-    {
-        //if (Mathf.Abs(xDirection) < 0.01f) return;
-
-        //bool faceRight = xDirection > 0f;
-        //if (faceRight == IsFacingRight) return;
-
-        //IsFacingRight = faceRight;
-        //spriteRenderer.flipX = !faceRight;
-    }
 }
