@@ -496,8 +496,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <rb>k__BackingField: {fileID: 2070811559938345489}
+  <movement>k__BackingField: {fileID: 500102234690487811}
+  <mainSpriteObject>k__BackingField: {fileID: 7689505124147020034}
   <col>k__BackingField: {fileID: 3475373091909483469}
-  <bodyGameObject>k__BackingField: {fileID: 7689505124147020034}
   <bodySpriteRenderer>k__BackingField: {fileID: 5692470478601368369}
   <armSpriteRenderer>k__BackingField: {fileID: 0}
 --- !u!114 &500102234690487811
@@ -722,6 +723,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <onInteractCanceled>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6942944216899276367
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class HitboxController : MonoBehaviour
     protected virtual void HandleCollisionHit(Collider2D collision)
     {
         HealthController hc = collision.GetComponent<HealthController>();
-        if (hc != null)
+        if (hc == null)
             hc = collision.GetComponentInParent<HealthController>();
 
         if (hc != null)
