@@ -6,26 +6,18 @@ using UnityEngine.Events;
 public class SupplyBox : MonoBehaviour, IInteractable
 {
     [Header("Conteudo")]
-    [Tooltip("Prefab do item a spawnar (ex: a Comida).")]
     [SerializeField] private GameObject itemPrefab;
-    [Tooltip("De onde os itens saem. Se vazio, usa a posicao da caixa.")]
     [SerializeField] private Transform spawnPoint;
-    [Tooltip("Quantos itens spawnar por abertura.")]
     [SerializeField] private int amount = 1;
-    [Tooltip("Espalhamento aleatorio do spawn, em unidades.")]
     [SerializeField] private float spawnSpread = 0.4f;
 
     [Header("Comportamento")]
-    [Tooltip("Tempo (s) que a caixa fica 'abrindo' com o player travado.")]
     [SerializeField] private float openDuration = 0.6f;
-    [Tooltip("Se true, so pode ser aberta uma vez.")]
     [SerializeField] private bool singleUse = true;
-    [Tooltip("Se reutilizavel, espera este tempo (s) antes de poder abrir de novo.")]
     [SerializeField] private float reuseCooldown = 2f;
-    [Tooltip("Texto mostrado no prompt de interacao.")]
     [SerializeField] private string prompt = "Abrir caixa";
 
-    [Header("Eventos (ligue som, animacao, particulas...)")]
+    [Header("Eventos")]
     [SerializeField] private UnityEvent onOpenStart;
     [SerializeField] private UnityEvent onOpenFinished;
 
