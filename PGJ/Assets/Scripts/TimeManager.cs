@@ -11,9 +11,9 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int stepDurationMinute;
     [SerializeField] private float tickDuration;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent onTickEvent;
-    [SerializeField] private UnityEvent onTimeEndEvent;
+    [field: Header("Events")]
+    [field: SerializeField] public UnityEvent onTickEvent { get; private set; }
+    [field: SerializeField] public UnityEvent onTimeEndEvent { get; private set; }
 
     private int currentHour = 0;
     private int currentMinute = 0;
