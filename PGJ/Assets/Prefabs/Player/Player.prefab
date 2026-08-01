@@ -381,7 +381,6 @@ MonoBehaviour:
   <rb>k__BackingField: {fileID: 2070811559938345489}
   <col>k__BackingField: {fileID: 3475373091909483469}
   <spriteRenderer>k__BackingField: {fileID: 5692470478601368369}
-  cam: {fileID: 0}
 --- !u!114 &500102234690487811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,15 +433,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7015666827802270903}
+  knifeObject: {fileID: 123627993318848105}
   range: 1.2
-  radius: 0.6
   damage: 3
   cooldown: 0.4
   hittableLayers:
     serializedVersion: 2
-    m_Bits: 55
-  knifeObject: {fileID: 123627993318848105}
-  visualDuration: 0.15
+    m_Bits: 257
+  attackDuration: 0.15
 --- !u!114 &64925031747909448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,7 +461,7 @@ MonoBehaviour:
   cooldown: 0.35
   hittableLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 257
   startingAmmo: 3
 --- !u!114 &9218515127231301115
 MonoBehaviour:
