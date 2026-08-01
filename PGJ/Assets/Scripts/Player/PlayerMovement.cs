@@ -46,11 +46,6 @@ public class PlayerMovement : MonoBehaviour
         if (!controller.MovementLocked && Mathf.Abs(moveInput.x) > 0.01f)
             controller.FaceTowards(moveInput.x);
     }
-
-    //public void SetMoveInput(Vector2 moveInput)
-    //{
-    //}
-
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();

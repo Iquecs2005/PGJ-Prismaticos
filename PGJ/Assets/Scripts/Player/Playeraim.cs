@@ -1,16 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-public class PlayerAim : MonoBehaviour
-{
-    [SerializeField] private PlayerController controller;
-    [SerializeField] private Transform crosshair;
-    [SerializeField] private bool hideSystemCursor = true;
 
-    void Awake()
-    {
-        if (controller == null) controller = GetComponent<PlayerController>();
-    }
+public class PlayerAim : PlayerHub
+{
+    [Tooltip("Sprite em world-space que segue o mouse.")]
+    [SerializeField] private Transform crosshair;
+    [Tooltip("Esconder o cursor do Windows enquanto mira.")]
+    [SerializeField] private bool hideSystemCursor = true;
 
     void OnEnable()
     {
@@ -24,9 +19,9 @@ public class PlayerAim : MonoBehaviour
 
     void Update()
     {
-        if (crosshair == null || controller == null) return;
+        if (!Initialized || crosshair == null) return;
 
-        Vector2 mouse = controller.MouseWorldPosition();
+        Vector2 mouse = player.MouseWorldPosition();
         crosshair.position = new Vector3(mouse.x, mouse.y, crosshair.position.z);
     }
 }
