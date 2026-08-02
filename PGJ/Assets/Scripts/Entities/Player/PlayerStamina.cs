@@ -18,12 +18,18 @@ public class PlayerStamina : MonoBehaviour
 
     [Header("Aceleracao")]
     [SerializeField] private float sprintMultiplier = 1.8f;
+    
+    [Header("Fome")]
+    [SerializeField] private PlayerHunger hunger;
+
 
     [Header("Events")]
     [SerializeField] private UnityEvent<float, float> onStaminaChanged;
 
     public float CurrentStamina { get; private set; }
     public float MaxStamina => maxStamina;
+    public float EffectiveMaxStamina =>
+        hunger != null ? maxStamina * hunger.StaminaAvailableFactor : maxStamina;
     public bool IsSprinting { get; private set; }
 
     public float SpeedMultiplier => IsSprinting ? sprintMultiplier : 1f;

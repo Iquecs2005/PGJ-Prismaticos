@@ -40,6 +40,13 @@ public class HealthController : MonoBehaviour
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
         OnHealed?.Invoke(amount);
     }
+    public virtual void Kill()
+    {
+        if (IsDead)
+            return;
+        CurrentHealth = 0;
+        Die();
+    }
 
     protected virtual void Die()
     {

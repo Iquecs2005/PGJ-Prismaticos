@@ -1678,6 +1678,7 @@ MonoBehaviour:
   regenDelay: 1
   minStaminaToSprint: 5
   sprintMultiplier: 1.8
+  hunger: {fileID: 1174055171}
   onStaminaChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1685,6 +1686,50 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
         m_MethodName: OnStaminaUpdate
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1174055171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174055144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567ea53e767836a44974394bdcaafbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHunger: 100
+  hungerPerTick: 1
+  onHungerChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 225213417}
+        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
+        m_MethodName: OnHungerUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onStarved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1373933360}
+        m_TargetAssemblyTypeName: HealthController, Assembly-CSharp
+        m_MethodName: Kill
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2092,7 +2137,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1174055170}
+    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1174055171}
   m_SourcePrefab: {fileID: 100100000, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+--- !u!114 &1373933360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+  m_PrefabInstance: {fileID: 1373933359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174055144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe09bb97a9ecacd468386376b95e05e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1578498583
 GameObject:
   m_ObjectHideFlags: 0
