@@ -211,6 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxCollider: {fileID: 2214465856208090719}
+  hitInfo:
+    damage: 0
+    damageOrigin: {fileID: 0}
+    damageDealer: {fileID: 0}
   destroyOnHit: 0
 --- !u!1 &785158257484778616
 GameObject:
@@ -292,7 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb3aeca8b7ae5443b4eae3695774c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteractableChanged:
+  interactAction: {fileID: 0}
+  onFocusChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &4192082359070733109
@@ -398,7 +403,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1069958135
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 101
   m_Sprite: {fileID: 21300000, guid: 237ca1e2c1e992d418ab4ea823fad282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -518,6 +523,21 @@ MonoBehaviour:
   maxSpeed: 8
   waterDrag: 4
   idleDrag: 3
+  <onMoveInputChange>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8654207241976710847}
+        m_TargetAssemblyTypeName: EntityAnimation, Assembly-CSharp
+        m_MethodName: SetMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3642070343650777314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +601,7 @@ MonoBehaviour:
   cooldown: 0.35
   hittableLayers:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 513
   startingAmmo: 3
 --- !u!114 &2271325317191799348
 MonoBehaviour:
@@ -639,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b192951cfd35a14f89db368dfac8ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
 --- !u!114 &9218515127231301115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,18 +677,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 500102234690487811}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: SetMoveInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8654207241976710847}
-        m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
         m_MethodName: SetMoveInput
         m_Mode: 0
         m_Arguments:
@@ -938,7 +947,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1069958135
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: f079f889cb43e564199e0a97d7d7f6ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
