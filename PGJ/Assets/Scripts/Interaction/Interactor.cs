@@ -1,14 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-
 [RequireComponent(typeof(Collider2D))]
 public class Interactor : MonoBehaviour
 {
+    public event Action<Transform> OnFocusChanged;
     private readonly List<IInteractable> inRange = new List<IInteractable>();
     private IInteractable focused;
     private IInteractable holding;
-
     public Transform FocusedTarget
     {
         get
@@ -17,14 +16,12 @@ public class Interactor : MonoBehaviour
             return mono != null ? mono.transform : null;
         }
     }
-
     public void OnInteractPerformed()
     {
         if (focused == null) return;
         holding = focused;
         holding.StartInteract(gameObject);
     }
-
     public void OnInteractCanceled()
     {
         if (holding == null || (holding as MonoBehaviour) == null)
@@ -35,7 +32,6 @@ public class Interactor : MonoBehaviour
         holding.CancelInteract(gameObject);
         holding = null;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         var interactable = other.GetComponent<IInteractable>();
@@ -48,12 +44,15 @@ public class Interactor : MonoBehaviour
         if (interactable != null)
             inRange.Remove(interactable);
     }
-
     private void FixedUpdate()
     {
-        focused = GetNearestUsable();
+        IInteractable nearest = GetNearestUsable();
+        if (!ReferenceEquals(nearest, focused))
+        {
+            focused = nearest;
+            OnFocusChanged?.Invoke(FocusedTarget);
+        }
     }
-
     private IInteractable GetNearestUsable()
     {
         IInteractable nearest = null;
