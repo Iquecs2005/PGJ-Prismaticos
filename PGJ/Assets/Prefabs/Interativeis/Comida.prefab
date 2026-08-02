@@ -171,3 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037202197fe119b4aba77b71cc835f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
+  launchSpeed: 10.06
+  launchDrag: 4
+  pickupDelay: 0.7
+  spawnScale: 1
