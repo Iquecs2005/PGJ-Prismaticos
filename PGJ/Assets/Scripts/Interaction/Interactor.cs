@@ -1,40 +1,28 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
-
 [RequireComponent(typeof(Collider2D))]
 public class Interactor : MonoBehaviour
 {
-    [Header("Input")]
-    [SerializeField] private InputActionReference interactAction;
-    [Header("UI")]
-    [SerializeField] private UnityEvent<bool> onFocusChanged;
-
+    public event Action<Transform> OnFocusChanged;
     private readonly List<IInteractable> inRange = new List<IInteractable>();
     private IInteractable focused;
     private IInteractable holding;
-
-    private void OnEnable()
+    public Transform FocusedTarget
     {
-        if (interactAction == null) return;
-        interactAction.action.performed += OnInteractPerformed;
-        interactAction.action.canceled += OnInteractCanceled;
-        interactAction.action.Enable();
+        get
+        {
+            var mono = focused as MonoBehaviour;
+            return mono != null ? mono.transform : null;
+        }
     }
-    private void OnDisable()
-    {
-        if (interactAction == null) return;
-        interactAction.action.performed -= OnInteractPerformed;
-        interactAction.action.canceled -= OnInteractCanceled;
-    }
-    private void OnInteractPerformed(InputAction.CallbackContext context)
+    public void OnInteractPerformed()
     {
         if (focused == null) return;
         holding = focused;
         holding.StartInteract(gameObject);
     }
-    private void OnInteractCanceled(InputAction.CallbackContext context)
+    public void OnInteractCanceled()
     {
         if (holding == null || (holding as MonoBehaviour) == null)
         {
@@ -56,15 +44,13 @@ public class Interactor : MonoBehaviour
         if (interactable != null)
             inRange.Remove(interactable);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         IInteractable nearest = GetNearestUsable();
         if (!ReferenceEquals(nearest, focused))
         {
-            focused?.OnFocusExit();
             focused = nearest;
-            focused?.OnFocusEnter();
-            onFocusChanged?.Invoke(focused != null);
+            OnFocusChanged?.Invoke(FocusedTarget);
         }
     }
     private IInteractable GetNearestUsable()
@@ -75,12 +61,14 @@ public class Interactor : MonoBehaviour
         for (int i = inRange.Count - 1; i >= 0; i--)
         {
             IInteractable candidate = inRange[i];
+
             if (candidate == null || (candidate as MonoBehaviour) == null)
             {
                 inRange.RemoveAt(i);
                 continue;
             }
             if (!candidate.CanInteract) continue;
+
             var mono = candidate as MonoBehaviour;
             float dist = ((Vector2)mono.transform.position - (Vector2)transform.position).sqrMagnitude;
             if (dist < best)

@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
             instance._timeManager = FindObjectOfType<TimeManager>();
         return instance._timeManager;
     }
+
     private static PlayerController GetPlayerController()
     {
         if (instance._playerController == null)
