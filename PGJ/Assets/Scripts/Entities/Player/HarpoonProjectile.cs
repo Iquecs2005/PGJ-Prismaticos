@@ -12,7 +12,7 @@ public class HarpoonProjectile : HitboxController
     [SerializeField] private float lifeAfterStuck = 8f;
 
     private Rigidbody2D rb;
-    private bool stuck;
+    //private bool stuck;
     private float timer = -1f;
 
     private void Awake()
@@ -50,7 +50,7 @@ public class HarpoonProjectile : HitboxController
 
     private void Stick(Transform surface)
     {
-        stuck = true;
+        //stuck = true;
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.simulated = false;       

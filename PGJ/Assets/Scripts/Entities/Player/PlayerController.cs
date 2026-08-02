@@ -15,5 +15,7 @@ public class PlayerController : EntityController
     {
         if (col == null) col = GetComponent<Collider2D>();
         if (bodySpriteRenderer == null) bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        GameManager.cameraController.SetFollowTarget(transform);
     }
 }

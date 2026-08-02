@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
 
     private TimeManager _timeManager;
     private PlayerController _playerController;
+    private CameraController _cameraController;
 
     public static TimeManager timeManager => GetTimeManager();
     public static PlayerController playerController => GetPlayerController();
+    public static CameraController cameraController => GetCameraController();
 
     private void Awake()
     {
@@ -35,5 +37,12 @@ public class GameManager : MonoBehaviour
         if (instance._playerController == null)
             instance._playerController = FindObjectOfType<PlayerController>();
         return instance._playerController;
+    }
+
+    private static CameraController GetCameraController()
+    {
+        if (instance._cameraController == null)
+            instance._cameraController = FindObjectOfType<CameraController>();
+        return instance._cameraController;
     }
 }
