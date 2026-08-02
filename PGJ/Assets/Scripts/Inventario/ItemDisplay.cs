@@ -8,15 +8,15 @@ public class ItemDisplay : MonoBehaviour
     public Image image;
     public TMP_Text countText;
 
-    public void SetItem(ItemData item, int count)
+    public void SetItem(ItemType item, int count)
     {
         gameObject.SetActive(true);
 
-        if (image != null)
-        {
-            image.sprite = item != null ? item.icon : null;
-            image.enabled = item != null;
-        }
+        //if (image != null)
+        //{
+        //    image.sprite = item != null ? item.icon : null;
+        //    image.enabled = item != null;
+        //}
 
         if (countText != null)
             countText.text = count + "x";
@@ -24,6 +24,6 @@ public class ItemDisplay : MonoBehaviour
 
     public void Clear()
     {
-        gameObject.SetActive(false);
+        countText.text = 0 + "x"; ;
     }
 }

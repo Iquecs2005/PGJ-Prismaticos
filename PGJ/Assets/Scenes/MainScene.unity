@@ -13288,14 +13288,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 147791520305836343, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2947498276723391564, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 23.91
-      objectReference: {fileID: 0}
     - target: {fileID: 3058470252188173158, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13340,32 +13332,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
-    - target: {fileID: 5390000242268135711, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -40
-      objectReference: {fileID: 0}
     - target: {fileID: 6570887241548174250, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
       propertyPath: cameraObject
       value: 
       objectReference: {fileID: 940072854}
-    - target: {fileID: 6570887241548174250, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-      propertyPath: parallaxEffect.Array.data[4].repeat
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6570887241548174250, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-      propertyPath: parallaxEffect.Array.data[7].repeat
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8513462775015184992, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3724371655882555970, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-    - {fileID: 8555298240622664513, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-    - {fileID: 4961105260633827014, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
-    - {fileID: 8196328749678131701, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17a55b3cbf8d7af498bf5817db7b18c4, type: 3}

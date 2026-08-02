@@ -1,4 +1,5 @@
 public interface ICollectible
 {
-    bool Collect();
+    public bool TryCollect(ref ItemType itemCollected, ref int amount);
+    public void OnCollect();
 }

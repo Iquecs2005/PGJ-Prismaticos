@@ -1,31 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DynamicInventory : MonoBehaviour
 {
+    [Header("Inventory variables")]
     [SerializeField] private int maxItems = 12;
-    [SerializeField] private List<ItemInstance> items = new List<ItemInstance>();
-    public IReadOnlyList<ItemInstance> Items => items;
-    public event Action OnChanged;
-    public bool AddItem(ItemInstance itemToAdd)
-    {
-        if (itemToAdd == null) return false;
+    [field: SerializeField] private List<InventoryItem> items = new List<InventoryItem>();
 
-        if (items.Count >= maxItems)
-        {
-            Debug.Log("No space in the inventory");
+    [Header("Inventory Events")]
+    [SerializeField] public UnityEvent OnChanged;
+
+    public IReadOnlyList<InventoryItem> Items => items;
+
+    private int currentItems = 0;
+
+    public bool AddItem(ItemType itemData, int amount) 
+    {
+        if (currentItems + amount > maxItems)
             return false;
+
+        InventoryItem item = FindInventoryItem(itemData);
+        if (item != null)
+        {
+            item.amount += amount;
         }
-        items.Add(itemToAdd);
+        else 
+        { 
+            item = new InventoryItem(itemData, amount);
+            items.Add(item);
+        }
+
+        currentItems += amount;
         OnChanged?.Invoke();
+
         return true;
     }
-    public void RemoveAt(int index)
+
+    public bool RemoveItem(ItemType itemData, int amount)
     {
-        if (index < 0 || index >= items.Count) return;
-        items.RemoveAt(index);
+        InventoryItem item = FindInventoryItem(itemData);
+
+        if (item.amount < amount)
+            return false;
+
+        if (item.amount > amount) 
+        {
+            item.amount -= amount;
+        }
+        else 
+        {
+            items.Remove(item);
+        }
+
+        currentItems -= amount;
         OnChanged?.Invoke();
+
+        return true;
+    }
+
+    private InventoryItem FindInventoryItem(ItemType itemType) 
+    {
+        foreach (InventoryItem item in items)
+        {
+            if (item.type == itemType)
+                return item;
+        }
+        return null;
+    }
+}
+
+public class InventoryItem 
+{
+    public ItemType type;
+    public int amount;
+
+    public InventoryItem(ItemType type, int amount)
+    {
+        this.type = type;
+        this.amount = amount;
     }
 }

@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Comida : MonoBehaviour, ICollectible, IItemSource
+public class Comida : MonoBehaviour, ICollectible
 {
     public static event Action OnComidaCollected;
 
     [Header("Item")]
-    [SerializeField] private ItemData item;
+    [SerializeField] private ItemType item;
 
     [Header("Saida da caixa")]
     [SerializeField] private float launchSpeed = 5f;
@@ -20,7 +20,7 @@ public class Comida : MonoBehaviour, ICollectible, IItemSource
     private float noPickupTimer;
     private bool launched;
 
-    public ItemData Item => item;
+    public ItemType Item => item;
     public bool CanBeCollected => noPickupTimer <= 0f;
 
     public void Launch()
@@ -47,12 +47,20 @@ public class Comida : MonoBehaviour, ICollectible, IItemSource
                 launched = false;
         }
     }
-    public bool Collect()
+    public bool TryCollect(ref ItemType itemCollected, ref int amount)
     {
-        if (noPickupTimer > 0f) return false;
+        if (noPickupTimer > 0f) 
+            return false;
 
+        itemCollected = item;
+        amount = 1;
+
+        return true;
+    }
+
+    public void OnCollect() 
+    {
         Destroy(gameObject);
         OnComidaCollected?.Invoke();
-        return true;
     }
 }

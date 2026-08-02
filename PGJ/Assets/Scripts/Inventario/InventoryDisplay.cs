@@ -4,48 +4,46 @@ using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour
 {
-    [SerializeField] private DynamicInventory inventory;
     [SerializeField] private ItemDisplay[] slots;
-    private readonly List<ItemData> types = new List<ItemData>();
-    private readonly List<int> counts = new List<int>();
+
+    private DynamicInventory playerInventory;
 
     private void Start()
     {
-        if (inventory == null) inventory = FindObjectOfType<DynamicInventory>();
+        playerInventory = GameManager.playerController.GetComponent<DynamicInventory>();
 
-        if (inventory != null)
+        if (playerInventory != null)
         {
-            inventory.OnChanged += UpdateInventory;
+            playerInventory.OnChanged.AddListener(UpdateInventory);
             UpdateInventory();
         }
     }
+
     private void OnDestroy()
     {
-        if (inventory != null) inventory.OnChanged -= UpdateInventory;
+        playerInventory?.OnChanged.RemoveListener(UpdateInventory);
     }
 
     public void UpdateInventory()
     {
-        types.Clear();
-        counts.Clear();
+        int slotIndex = 0;
 
-        foreach (ItemInstance instance in inventory.Items)
+        foreach (InventoryItem item in playerInventory.Items)
         {
-            if (instance == null || instance.itemType == null) continue;
-
-            int index = types.IndexOf(instance.itemType);
-            if (index >= 0) counts[index]++;
-            else
+            if (slotIndex >= slots.Length)
             {
-                types.Add(instance.itemType);
-                counts.Add(1);
+                Debug.LogError("To little slots for inventory items");
+                return;
             }
+
+            slots[slotIndex].SetItem(item.type, item.amount);
+
+            slotIndex++;
         }
 
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = slotIndex; i < slots.Length; i++)
         {
-            if (i < types.Count) slots[i].SetItem(types[i], counts[i]);
-            else slots[i].Clear();
+            slots[i].Clear();
         }
     }
 }

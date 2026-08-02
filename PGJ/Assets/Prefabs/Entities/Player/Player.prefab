@@ -296,6 +296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb3aeca8b7ae5443b4eae3695774c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <OnFocusChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4192082359070733109
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,8 +430,9 @@ GameObject:
   - component: {fileID: 1388139274871560033}
   - component: {fileID: 64925031747909448}
   - component: {fileID: 2271325317191799348}
+  - component: {fileID: 1283818774743586590}
+  - component: {fileID: 6865784329104334830}
   - component: {fileID: 8654207241976710847}
-  - component: {fileID: 4590879878011798732}
   - component: {fileID: 9218515127231301115}
   - component: {fileID: 6942944216899276367}
   m_Layer: 6
@@ -515,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7015666827802270903}
+  stamina: {fileID: 0}
   acceleration: 20
   maxSpeed: 8
   waterDrag: 4
@@ -598,7 +603,7 @@ MonoBehaviour:
   hittableLayers:
     serializedVersion: 2
     m_Bits: 513
-  startingAmmo: 3
+  startingAmmo: 99
 --- !u!114 &2271325317191799348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +635,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1283818774743586590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e93926b5abb8394183e24be9c77dc4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxItems: 12
+  OnChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6865784329104334830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b192951cfd35a14f89db368dfac8ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 1283818774743586590}
 --- !u!114 &8654207241976710847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,19 +677,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1999218536235640598}
---- !u!114 &4590879878011798732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7476819595610973635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b192951cfd35a14f89db368dfac8ff2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
 --- !u!114 &9218515127231301115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +752,36 @@ MonoBehaviour:
   <onInteractCanceled>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  <onSprintAction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerStamina, Assembly-CSharp
+        m_MethodName: SetSprinting
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <onPauseAction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6942944216899276367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,6 +915,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 07de14a8-894b-4c6b-9adf-865cf78fefc8
     m_ActionName: Player/Interagir[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9218515127231301115}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: SprintAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: daea8dec-8367-4f7d-b893-d6b7a6c731df
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9218515127231301115}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: PauseAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 373b16fe-2f69-4d02-9f01-5f8099cbd2d8
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
