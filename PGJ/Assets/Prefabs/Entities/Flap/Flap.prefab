@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHunger: 300
   hungerPerSecond: 1
+  hungerPerFood: 50
+  foodItemType: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
 --- !u!114 &7263409593673441418
 MonoBehaviour:
   m_ObjectHideFlags: 0

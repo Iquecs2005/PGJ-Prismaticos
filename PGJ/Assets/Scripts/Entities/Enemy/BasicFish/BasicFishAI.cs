@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BasicFishAI : RandomMovementAI
 {
+    [SerializeField] private GameObject deadBody;
+
     private GameObject lastThreat;
 
     private bool frightened = false;
@@ -39,5 +41,10 @@ public class BasicFishAI : RandomMovementAI
         {
             base.FleeUpdate();
         }
+    }
+
+    public void OnDeath() 
+    {
+        Instantiate(deadBody, transform.position, Quaternion.identity);
     }
 }

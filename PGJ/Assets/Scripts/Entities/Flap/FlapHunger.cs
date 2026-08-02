@@ -6,6 +6,8 @@ public class FlapHunger : MonoBehaviour
 {
     [SerializeField] private float maxHunger;
     [SerializeField] private float hungerPerSecond;
+    [SerializeField] private float hungerPerFood;
+    [SerializeField] private ItemType foodItemType;
 
     private float currentHunger = 0;
 
@@ -16,13 +18,24 @@ public class FlapHunger : MonoBehaviour
         ApplyHunger();
     }
 
-    public void Feed(float amount) 
+    public void Feed() 
     {
         if (dead) 
             return;
 
-        currentHunger -= amount;
-        currentHunger = Mathf.Max(0, currentHunger);
+        DynamicInventory inventory = GameManager.playerController.GetComponent<DynamicInventory>();
+        if (inventory == null)
+            return;
+
+        if (inventory.RemoveItem(foodItemType, 1)) 
+        {
+            currentHunger -= hungerPerFood;
+            currentHunger = Mathf.Max(0, currentHunger);
+        }
+        else 
+        {
+            print("No food for flap");
+        }
     }
 
     private void ApplyHunger() 

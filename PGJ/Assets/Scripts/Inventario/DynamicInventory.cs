@@ -42,6 +42,9 @@ public class DynamicInventory : MonoBehaviour
     {
         InventoryItem item = FindInventoryItem(itemData);
 
+        if (item == null)
+            return false;
+
         if (item.amount < amount)
             return false;
 
