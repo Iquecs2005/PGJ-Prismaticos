@@ -23,7 +23,7 @@ public class HouseController : MonoBehaviour
         houseInterior.SetActive(false);
         houseExterior.SetActive(true);
 
-        GameManager.cameraController.ResetZoom();
-        GameManager.cameraController.ResetConfiner();
+        GameManager.cameraController?.ResetZoom();
+        GameManager.cameraController?.ResetConfiner();
     }
 }

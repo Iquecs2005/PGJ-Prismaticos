@@ -34,13 +34,17 @@ public class Interactor : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var interactable = other.GetComponent<IInteractable>();
-        if (interactable != null && !inRange.Contains(interactable))
+        print("a");
+        var interactable = other.GetComponentInParent<IInteractable>();
+        if (interactable != null && !inRange.Contains(interactable)) 
+        {
+            print("b");
             inRange.Add(interactable);
+        }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        var interactable = other.GetComponent<IInteractable>();
+        var interactable = other.GetComponentInParent<IInteractable>();
         if (interactable != null)
             inRange.Remove(interactable);
     }

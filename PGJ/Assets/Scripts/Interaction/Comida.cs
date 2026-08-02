@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 public class Comida : MonoBehaviour, ICollectible, IItemSource
 {
     public static event Action OnComidaCollected;

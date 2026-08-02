@@ -296,10 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb3aeca8b7ae5443b4eae3695774c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactAction: {fileID: 0}
-  onFocusChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4192082359070733109
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +501,7 @@ MonoBehaviour:
   <mainSpriteObject>k__BackingField: {fileID: 7689505124147020034}
   <col>k__BackingField: {fileID: 3475373091909483469}
   <bodySpriteRenderer>k__BackingField: {fileID: 5692470478601368369}
-  <armSpriteRenderer>k__BackingField: {fileID: 0}
+  <armSpriteRenderer>k__BackingField: {fileID: 6533663851219728187}
 --- !u!114 &500102234690487811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,7 +718,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5050176415378662539}
         m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
-        m_MethodName: OnInteractPressed
+        m_MethodName: OnInteractPerformed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

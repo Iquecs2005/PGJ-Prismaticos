@@ -16,6 +16,15 @@ public class FlapHunger : MonoBehaviour
         ApplyHunger();
     }
 
+    public void Feed(float amount) 
+    {
+        if (dead) 
+            return;
+
+        currentHunger -= amount;
+        currentHunger = Mathf.Max(0, currentHunger);
+    }
+
     private void ApplyHunger() 
     {
         if (dead)

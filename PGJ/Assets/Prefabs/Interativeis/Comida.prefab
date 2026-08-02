@@ -174,5 +174,5 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
   launchSpeed: 10.06
   launchDrag: 4
-  pickupDelay: 0.7
+  pickupDelay: 1.5
   spawnScale: 1

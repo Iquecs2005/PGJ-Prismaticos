@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
 
     private static CameraController GetCameraController()
     {
+        if (instance == null)
+            return null;
+
         if (instance._cameraController == null)
             instance._cameraController = FindObjectOfType<CameraController>();
         return instance._cameraController;
