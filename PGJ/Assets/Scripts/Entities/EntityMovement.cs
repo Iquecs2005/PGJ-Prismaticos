@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
 public class EntityMovement : MonoBehaviour
 {
     [Header("Entity References")]
     [SerializeField] private EntityController controller;
+
+    [Tooltip("Opcional. So no player. Deixe vazio nos inimigos.")]
+    [SerializeField] private PlayerStamina stamina;
 
     [Header("Basic Movement Variables")]
     [SerializeField] private float acceleration = 40f;
@@ -44,11 +46,15 @@ public class EntityMovement : MonoBehaviour
         bool swimming = input.sqrMagnitude > 0.01f;
         rb.drag = swimming ? waterDrag : idleDrag;
 
+        float mult = stamina != null ? stamina.SpeedMultiplier : 1f;
+
         if (swimming)
         {
-            rb.AddForce(input.normalized * acceleration, ForceMode2D.Force);
-            if (rb.velocity.magnitude > maxSpeed)
-                rb.velocity = rb.velocity.normalized * maxSpeed;
+            rb.AddForce(input.normalized * acceleration * mult, ForceMode2D.Force);
+
+            float cap = maxSpeed * mult;
+            if (rb.velocity.magnitude > cap)
+                rb.velocity = rb.velocity.normalized * cap;
         }
     }
 }

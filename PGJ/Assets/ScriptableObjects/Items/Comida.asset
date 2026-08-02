@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Comida
   m_EditorClassIdentifier: 
   itemName: Comida
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 792e8e76b63aa244bb740f8d414c4b8b, type: 3}
   worldPrefab: {fileID: 7374488650722601205, guid: 922954003c30ce941a606b454e5a7e0f, type: 3}
   description: 
   startingAmmo: 0

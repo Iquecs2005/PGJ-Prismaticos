@@ -12,11 +12,19 @@ public class PlayerInputController : MonoBehaviour
     [field: SerializeField] public UnityEvent<Vector2> onHarpoonAction { get; private set; }
     [field: SerializeField] public UnityEvent onInteractAction { get; private set; }
     [field: SerializeField] public UnityEvent onInteractCanceled { get; private set; }
+    [field: SerializeField] public UnityEvent<bool> onSprintAction { get; private set; }
 
     public void MoveAction(InputAction.CallbackContext context)
     {
         Vector2 moveInput = context.ReadValue<Vector2>();
         onMoveAction.Invoke(moveInput);
+    }
+    public void SprintAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            onSprintAction.Invoke(true);
+        else if (context.canceled)
+            onSprintAction.Invoke(false);
     }
 
     public void KnifeAction(InputAction.CallbackContext context)

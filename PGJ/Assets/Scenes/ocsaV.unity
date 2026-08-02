@@ -397,6 +397,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1661398404}
   startHidden: 1
+--- !u!114 &225213417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2476526728821110738, guid: 53872efedc1908a4aa0dcecb1aaa4b90, type: 3}
+  m_PrefabInstance: {fileID: 1054528668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225213413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a733a7686980540b9b7351c42d5cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &301802006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1118,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxItems: 12
+--- !u!114 &1174055159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+  m_PrefabInstance: {fileID: 1373933359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174055144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f26d96bbc3f4741a12977d9bdcd69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1174055170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174055144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1301b6a7ba76dc49be193c97fd4f50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100
+  drainPerSecond: 25
+  regenPerSecond: 15
+  regenDelay: 1
+  minStaminaToSprint: 5
+  sprintMultiplier: 1.8
+  onStaminaChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 225213417}
+        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
+        m_MethodName: OnStaminaUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1294281388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1235,10 @@ PrefabInstance:
       propertyPath: startingAmmo
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 500102234690487811, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: stamina
+      value: 
+      objectReference: {fileID: 1174055170}
     - target: {fileID: 1204561731332380637, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1220,9 +1279,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: daea8dec-8367-4f7d-b893-d6b7a6c731df
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: Player/Sprint[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1174055159}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SprintAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942944216899276367, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <onSprintAction>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <onSprintAction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1174055170}
+    - target: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <onSprintAction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <onSprintAction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSprinting
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <onSprintAction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerStamina, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218515127231301115, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: <onSprintAction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1234,6 +1357,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1174055156}
+    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1174055170}
   m_SourcePrefab: {fileID: 100100000, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
 --- !u!1 &1578498583
 GameObject:
