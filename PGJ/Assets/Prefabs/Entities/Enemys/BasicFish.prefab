@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724764784752720703}
   - component: {fileID: 510884890753595110}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5969116895509934748}
   - component: {fileID: 2774491881398113140}
   - component: {fileID: 7512502852285622284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,9 +285,10 @@ GameObject:
   - component: {fileID: 5671987879269997122}
   - component: {fileID: 3726243794556072354}
   - component: {fileID: 6979455708490985519}
+  - component: {fileID: 8813425665429686533}
   - component: {fileID: 8623621127716501327}
   - component: {fileID: 5461560340099293551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BasicFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,6 +374,21 @@ MonoBehaviour:
   maxSpeed: 3
   waterDrag: 4
   idleDrag: 6
+  <onMoveInputChange>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8813425665429686533}
+        m_TargetAssemblyTypeName: EntityAnimation, Assembly-CSharp
+        m_MethodName: SetMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6979455708490985519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +408,19 @@ MonoBehaviour:
   OnFlipEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8813425665429686533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072766418970434395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be304fb79791cf941bb59650ba24ade8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7512502852285622284}
 --- !u!114 &8623621127716501327
 MonoBehaviour:
   m_ObjectHideFlags: 0

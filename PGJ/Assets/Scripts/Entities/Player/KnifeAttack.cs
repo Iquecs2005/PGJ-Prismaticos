@@ -47,7 +47,7 @@ public class KnifeAttack : MonoBehaviour
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         knifeObject.transform.SetPositionAndRotation(hitCenter, Quaternion.Euler(0f, 0f, angle));
-        knifeObject.GetComponent<HitboxController>().SetUp(damage, hittableLayers);
+        knifeObject.GetComponent<HitboxController>().SetUp(damage, hittableLayers, gameObject);
         knifeObject.SetActive(true);
 
         attackTimer = attackDuration;

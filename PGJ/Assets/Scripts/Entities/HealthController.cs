@@ -7,7 +7,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] private int maxHealth = 20;
 
     [Header("Eventos")]
-    public UnityEvent<int> OnDamageTaken;
+    public UnityEvent<HitInformation> OnDamageTaken;
     public UnityEvent<int> OnHealed;
     public UnityEvent OnDeath;
 
@@ -20,12 +20,14 @@ public class HealthController : MonoBehaviour
         CurrentHealth = maxHealth;
     }
 
-    public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(HitInformation hit)
     {
-        if (amount <= 0 || IsDead) return;
+        print($"{hit.damage} from {hit.damageDealer} by {hit.damageOrigin}");
 
-        CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
-        OnDamageTaken?.Invoke(amount);
+        if (hit.damage <= 0 || IsDead) return;
+
+        CurrentHealth = Mathf.Max(CurrentHealth - hit.damage, 0);
+        OnDamageTaken?.Invoke(hit);
 
         if (CurrentHealth <= 0)
             Die();

@@ -30,14 +30,13 @@ public class HarpoonProjectile : HitboxController
             Destroy(gameObject);
     }
 
-    public void Launch(Vector2 direction, float speed, int damage, LayerMask hittableLayers)
+    public void Launch(Vector2 direction, float speed, int damage, LayerMask hittableLayers, GameObject damageDealer = null)
     {
-        this.damage = damage;
+        SetUp(damage, hittableLayers, damageDealer);
 
         rb.gravityScale = 0f;                     
         rb.velocity = direction.normalized * speed;
         rb.angularVelocity = 0f;
-
         rb.includeLayers = hittableLayers;
 
         SetLifetime(maxLifetime);

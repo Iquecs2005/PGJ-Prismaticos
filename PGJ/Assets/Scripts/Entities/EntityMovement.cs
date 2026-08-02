@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntityMovement : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class EntityMovement : MonoBehaviour
     [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float waterDrag = 4f;
     [SerializeField] private float idleDrag = 6f;
+
+    [field: Header("Basic Movement Events")]
+    [field: SerializeField] public UnityEvent<Vector2> onMoveInputChange { get; protected set; }
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -30,6 +34,7 @@ public class EntityMovement : MonoBehaviour
     public void SetMoveInput(Vector2 moveInput)
     {
         this.moveInput = moveInput;
+        onMoveInputChange.Invoke(moveInput);
     }
 
     public void ApplyMovement()

@@ -47,7 +47,7 @@ public class HarpoonAttack : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         HarpoonProjectile harpoon = Instantiate(harpoonPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
-        harpoon.Launch(dir, speed, damage, hittableLayers);
+        harpoon.Launch(dir, speed, damage, hittableLayers, gameObject);
 
         CurrentAmmo--;
         cdTimer = cooldown;

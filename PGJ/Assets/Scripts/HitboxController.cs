@@ -5,18 +5,27 @@ using UnityEngine;
 public class HitboxController : MonoBehaviour
 {
     [SerializeField] protected Collider2D hitboxCollider;
+    [SerializeField] private HitInformation hitInfo;
     [SerializeField] protected bool destroyOnHit = false;
-
-    protected int damage = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HandleCollisionHit(collision);
     }
 
-    public virtual void SetUp(int damage, LayerMask hittableLayers) 
+    public virtual void SetUp(int damage, LayerMask hittableLayers, GameObject damageDealer = null) 
     {
-        this.damage = damage;
+        hitInfo.damage = damage;
+        hitInfo.damageOrigin = gameObject;
+        if (damageDealer != null) 
+        {
+            hitInfo.damageDealer = damageDealer;
+        }
+        else 
+        {
+            if (hitInfo.damageDealer == null)
+                hitInfo.damageDealer = gameObject;
+        }
         hitboxCollider.includeLayers = hittableLayers;
     }
 
@@ -27,7 +36,7 @@ public class HitboxController : MonoBehaviour
             hc = collision.GetComponentInParent<HealthController>();
 
         if (hc != null)
-            hc.TakeDamage(damage);
+            hc.TakeDamage(hitInfo);
 
         if (destroyOnHit)
             Destroy(gameObject);
