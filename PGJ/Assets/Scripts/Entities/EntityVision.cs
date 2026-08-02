@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntityVision : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class EntityVision : MonoBehaviour
     [SerializeField] private float outerRadius;
     [SerializeField] private float visionAngle;
 
-    public bool seeing;
+    [field: Header("Vision Events")]
+    [field: SerializeField] public UnityEvent onObjectsonViewChangedEvent { get; private set; }
+
+    public List<Collider2D> onViewColliders { get; private set; } = new List<Collider2D>();
 
     private void OnValidate()
     {
@@ -27,7 +31,7 @@ public class EntityVision : MonoBehaviour
 
         if (distance < innerRadius) 
         {
-            seeing = true;
+            AddToView(collision);
             return;
         }
 
@@ -35,11 +39,47 @@ public class EntityVision : MonoBehaviour
         float angleBetween = Vector2.Angle(transform.right, dir);
         if (distance < outerRadius && angleBetween < visionAngle)
         {
-            seeing = true;
+            AddToView(collision);
             return;
         }
-                
-        seeing = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        RemoveFromView(collision);
+    }
+
+    public GameObject GetClosestObjectOnView(Vector2 position) 
+    {
+        GameObject closest = null;
+        float minDist = float.MaxValue;
+
+        foreach (var collider in onViewColliders)
+        {
+            float distance = Vector2.Distance(position, collider.transform.position);
+            if (distance < minDist)
+            {
+                closest = collider.gameObject;
+                minDist = distance;
+            }
+        }
+
+        return closest;
+    }
+
+    private void AddToView(Collider2D collision) 
+    {
+        if (onViewColliders.Contains(collision))
+            return;
+
+        onViewColliders.Add(collision);
+        onObjectsonViewChangedEvent.Invoke();
+    }
+
+    private void RemoveFromView(Collider2D collision) 
+    {
+        if (onViewColliders.Remove(collision))
+            onObjectsonViewChangedEvent.Invoke();
     }
 
     private float EffectiveCircleRadius() 

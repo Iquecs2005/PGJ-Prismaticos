@@ -440,7 +440,21 @@ MonoBehaviour:
   innerRadius: 2.5
   outerRadius: 7
   visionAngle: 60
-  seeing: 0
+  <onObjectsonViewChangedEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2041664154}
+        m_TargetAssemblyTypeName: BasicFishAI, Assembly-CSharp
+        m_MethodName: OnNewObjectOnView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &535070370
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -479,11 +493,6 @@ CircleCollider2D:
 --- !u!4 &582422503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1204561731332380637, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
-  m_PrefabInstance: {fileID: 1373933359}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &717622841 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
   m_PrefabInstance: {fileID: 1373933359}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &925502553
@@ -1324,7 +1333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2041664150}
   - component: {fileID: 2041664153}
-  - component: {fileID: 2041664152}
+  - component: {fileID: 2041664157}
   - component: {fileID: 2041664151}
   - component: {fileID: 2041664155}
   - component: {fileID: 2041664154}
@@ -1361,31 +1370,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041664149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8e75cc2cad1b3a439d93f4fe7258912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2041664152}
+  controller: {fileID: 2041664157}
   acceleration: 40
   maxSpeed: 3
   waterDrag: 4
   idleDrag: 6
---- !u!114 &2041664152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041664149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c84f2d38c05ad469226d0e48edca7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <rb>k__BackingField: {fileID: 2041664153}
-  <movement>k__BackingField: {fileID: 2041664151}
-  <mainSpriteObject>k__BackingField: {fileID: 1553270481}
 --- !u!50 &2041664153
 Rigidbody2D:
   serializedVersion: 4
@@ -1412,7 +1406,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2041664154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1425,8 +1419,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1d8ce1928a4c742bcd08f1485edfb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2041664152}
-  player: {fileID: 717622841}
+  controller: {fileID: 2041664157}
+  fleeTime: 5
+  minIdleTime: 2.5
+  maxIdleTime: 7
+  minMovingTime: 0.5
+  maxMovingTime: 2
 --- !u!114 &2041664155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,8 +1437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce7b7c136e05824090bfe000539be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2041664152}
-  minSpeed: 1
+  controller: {fileID: 2041664157}
+  minSpeed: 2
   turnSpeed: 500
   flipAngle: 30
   OnFlipEvent:
@@ -1468,6 +1466,23 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2041664157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041664149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699e9de9a846a3844832a6bd50fbc757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <rb>k__BackingField: {fileID: 2041664153}
+  <movement>k__BackingField: {fileID: 2041664151}
+  <mainSpriteObject>k__BackingField: {fileID: 1553270481}
+  <ai>k__BackingField: {fileID: 2041664154}
+  <vision>k__BackingField: {fileID: 535070369}
 --- !u!1 &2053680313
 GameObject:
   m_ObjectHideFlags: 0
