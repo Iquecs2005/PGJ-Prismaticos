@@ -29,6 +29,7 @@ class ParallaxLayer
 {
     [SerializeField] private GameObject layerObject;
     [SerializeField] private float parallaxEffect;
+    [SerializeField] private bool repeat = true;
 
     private Vector2 startPos;
     private float xLength;
@@ -52,13 +53,16 @@ class ParallaxLayer
         Vector2 pos = startPos + new Vector2(distanceX, distanceY);
         layerObject.transform.position = pos;
 
-        if (xMovement > startPos.x + xLength)
+        if (repeat) 
         {
-            startPos.x += xLength;
-        }
-        else if (xMovement < startPos.x - xLength)
-        {
-            startPos.x -= xLength;
+            if (xMovement > startPos.x + xLength)
+            {
+                startPos.x += xLength;
+            }
+            else if (xMovement < startPos.x - xLength)
+            {
+                startPos.x -= xLength;
+            }
         }
     }
 }

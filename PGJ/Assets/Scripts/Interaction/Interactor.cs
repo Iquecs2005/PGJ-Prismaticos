@@ -1,13 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(Collider2D))]
 public class Interactor : MonoBehaviour
 {
-    public event Action<Transform> OnFocusChanged;
     private readonly List<IInteractable> inRange = new List<IInteractable>();
     private IInteractable focused;
     private IInteractable holding;
+
+    [field: Header("Interactor Events")]
+    [field: SerializeField] public UnityEvent<Transform> OnFocusChanged { get; private set; }
+
     public Transform FocusedTarget
     {
         get
@@ -16,6 +21,7 @@ public class Interactor : MonoBehaviour
             return mono != null ? mono.transform : null;
         }
     }
+
     public void OnInteractPerformed()
     {
         if (focused == null) return;
@@ -34,11 +40,9 @@ public class Interactor : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("a");
         var interactable = other.GetComponentInParent<IInteractable>();
         if (interactable != null && !inRange.Contains(interactable)) 
         {
-            print("b");
             inRange.Add(interactable);
         }
     }
