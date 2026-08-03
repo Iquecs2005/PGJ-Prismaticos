@@ -11,6 +11,7 @@ public class HealthController : MonoBehaviour
     public UnityEvent<int> OnHealed;
     public UnityEvent OnDeath;
 
+    public UnityEvent<int, int> OnHealthChanged;
     public int MaxHealth => maxHealth;
     public int CurrentHealth { get; protected set; }
     public bool IsDead => CurrentHealth <= 0;
@@ -18,6 +19,7 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         CurrentHealth = maxHealth;
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 
     public virtual void TakeDamage(HitInformation hit)
@@ -28,6 +30,7 @@ public class HealthController : MonoBehaviour
 
         CurrentHealth = Mathf.Max(CurrentHealth - hit.damage, 0);
         OnDamageTaken?.Invoke(hit);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (CurrentHealth <= 0)
             Die();
@@ -39,12 +42,14 @@ public class HealthController : MonoBehaviour
 
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
         OnHealed?.Invoke(amount);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
     public virtual void Kill()
     {
         if (IsDead)
             return;
         CurrentHealth = 0;
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
         Die();
     }
 
