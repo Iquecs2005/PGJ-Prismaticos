@@ -12,6 +12,9 @@ public class FlapHunger : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent onStarved;
 
+    [Header("Som")]
+    [SerializeField] private SFXGroup feedSFX;
+
     private float currentHunger = 0;
 
     private bool dead;
@@ -34,6 +37,9 @@ public class FlapHunger : MonoBehaviour
         {
             currentHunger -= hungerPerFood;
             currentHunger = Mathf.Max(0, currentHunger);
+
+            if (feedSFX != null)
+                SFXManager.PlaySFX(feedSFX, transform.position);
         }
         else
         {

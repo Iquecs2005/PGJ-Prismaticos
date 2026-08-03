@@ -16,6 +16,9 @@ public class Comida : MonoBehaviour, ICollectible
     [SerializeField] private float pickupDelay = 0.7f;
     [SerializeField] private float spawnScale = 1f;
 
+    [Header("Som")]
+    [SerializeField] private SFXGroup collectSFX;
+
     private Vector2 velocity;
     private float noPickupTimer;
     private bool launched;
@@ -49,7 +52,7 @@ public class Comida : MonoBehaviour, ICollectible
     }
     public bool TryCollect(ref ItemType itemCollected, ref int amount)
     {
-        if (noPickupTimer > 0f) 
+        if (noPickupTimer > 0f)
             return false;
 
         itemCollected = item;
@@ -58,8 +61,11 @@ public class Comida : MonoBehaviour, ICollectible
         return true;
     }
 
-    public void OnCollect() 
+    public void OnCollect()
     {
+        if (collectSFX != null)
+            SFXManager.PlaySFX(collectSFX, transform.position);
+
         Destroy(gameObject);
         OnComidaCollected?.Invoke();
     }

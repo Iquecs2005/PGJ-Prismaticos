@@ -17,6 +17,9 @@ public class HarpoonAttack : MonoBehaviour
     [Header("Munição")]
     [SerializeField] private int startingAmmo = 3;
 
+    [Header("Som")]
+    [SerializeField] private SFXGroup fireSFX;
+
     public int CurrentAmmo { get; private set; }
     public bool OnCooldown => cdTimer > 0f;
 
@@ -24,9 +27,8 @@ public class HarpoonAttack : MonoBehaviour
 
     private void Start()
     {
-        CurrentAmmo = startingAmmo;  
+        CurrentAmmo = startingAmmo;
     }
-
     void Update()
     {
         if (cdTimer > 0f) cdTimer -= Time.deltaTime;
@@ -36,7 +38,6 @@ public class HarpoonAttack : MonoBehaviour
     {
         if (amount > 0) CurrentAmmo += amount;
     }
-
     public void FireHarpoon(Vector2 aimPosition)
     {
         if (OnCooldown || CurrentAmmo <= 0 || harpoonPrefab == null)
@@ -51,6 +52,9 @@ public class HarpoonAttack : MonoBehaviour
 
         CurrentAmmo--;
         cdTimer = cooldown;
+
+        if (fireSFX != null)
+            SFXManager.PlaySFX(fireSFX, firePoint.position);
         return;
     }
 }

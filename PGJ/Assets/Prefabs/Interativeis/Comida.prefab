@@ -176,3 +176,4 @@ MonoBehaviour:
   launchDrag: 4
   pickupDelay: 1.5
   spawnScale: 1
+  collectSFX: {fileID: 11400000, guid: cec12a254d8c8854ebb0c5605631fca4, type: 2}
