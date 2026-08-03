@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  invincibilityDuration: 0
+  invincibilityDuration: 0.75
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
@@ -826,7 +826,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 513
   startingAmmo: 99
-  fireSFX: {fileID: 0}
+  fireSFX: {fileID: 11400000, guid: a2d22c9248013354d908d15ccc443f7d, type: 2}
 --- !u!114 &2271325317191799348
 MonoBehaviour:
   m_ObjectHideFlags: 0

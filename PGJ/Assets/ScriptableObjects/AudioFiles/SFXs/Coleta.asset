@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coleta
   m_EditorClassIdentifier: 
   sfxVariations:
-  - clip: {fileID: 8300000, guid: f3e29f49c3c76a1489c01b51c8c51896, type: 3}
-    volume: 0.105
-    minPitchShift: 0.21
-    maxPitchShift: 1.15
+  - clip: {fileID: 8300000, guid: 1cc3f9d352039c14181958e69aa24d28, type: 3}
+    volume: 0.1
+    minPitchShift: 0.2
+    maxPitchShift: 1.2

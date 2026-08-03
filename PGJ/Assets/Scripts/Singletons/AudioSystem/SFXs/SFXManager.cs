@@ -10,7 +10,8 @@ public class SFXManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
     }
 
     public static void PlaySFX(SFXGroup sfxGroup)

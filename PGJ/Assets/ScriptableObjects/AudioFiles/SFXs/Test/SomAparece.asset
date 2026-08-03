@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxVariations:
   - clip: {fileID: 8300000, guid: 899aecb19faec0844b64aea01d034db0, type: 3}
-    volume: 0.028
-    minPitchShift: 0.34
-    maxPitchShift: 0.53
+    volume: 0.1
+    minPitchShift: 0.8
+    maxPitchShift: 1.2
