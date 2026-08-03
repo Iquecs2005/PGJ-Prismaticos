@@ -19,11 +19,11 @@ public class ItemDisplay : MonoBehaviour
         //}
 
         if (countText != null)
-            countText.text = count + "x";
+            countText.text = $"X {count:D2}";
     }
 
     public void Clear()
     {
-        countText.text = 0 + "x"; ;
+        countText.text = $"X 00";
     }
 }
