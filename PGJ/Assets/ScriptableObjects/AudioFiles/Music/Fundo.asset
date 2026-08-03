@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Fundo
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: d305c2863bf801241ada093ff1dee75c, type: 3}
-  volume: 0.5
+  volume: 0.364

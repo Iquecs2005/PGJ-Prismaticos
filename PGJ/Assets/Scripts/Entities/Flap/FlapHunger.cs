@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class FlapHunger : MonoBehaviour
 {
     [SerializeField] private float maxHunger;
     [SerializeField] private float hungerPerSecond;
     [SerializeField] private float hungerPerFood;
     [SerializeField] private ItemType foodItemType;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent onStarved;
 
     private float currentHunger = 0;
 
@@ -18,32 +21,30 @@ public class FlapHunger : MonoBehaviour
         ApplyHunger();
     }
 
-    public void Feed() 
+    public void Feed()
     {
-        if (dead) 
+        if (dead)
             return;
 
         DynamicInventory inventory = GameManager.playerController.inventory;
         if (inventory == null)
             return;
 
-        if (inventory.RemoveItem(foodItemType, 1)) 
+        if (inventory.RemoveItem(foodItemType, 1))
         {
             currentHunger -= hungerPerFood;
             currentHunger = Mathf.Max(0, currentHunger);
         }
-        else 
+        else
         {
             print("No food for flap");
         }
     }
-
-    public float GetHungerRatio() 
+    public float GetHungerRatio()
     {
         return currentHunger / maxHunger;
     }
-
-    private void ApplyHunger() 
+    private void ApplyHunger()
     {
         if (dead)
             return;
@@ -54,10 +55,12 @@ public class FlapHunger : MonoBehaviour
             OnStarvation();
         }
     }
-
-    private void OnStarvation() 
+    private void OnStarvation()
     {
         print("Flap starved");
         dead = true;
+        onStarved?.Invoke();
+        if (GameOverManager.Instance != null)
+            GameOverManager.Instance.OnFlapStarved();
     }
 }
