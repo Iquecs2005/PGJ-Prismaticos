@@ -15,9 +15,20 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private Slider hungerBar;
     [SerializeField] private TMP_Text clockText;
 
-    private void Start()
+    private void OnEnable()
     {
         GameManager.timeManager.onTickEvent.AddListener(UpdateClock);
+        GameManager.playerController.health.onHealthChanged.AddListener(OnHealthUpdate);
+        GameManager.playerController.stamina.onStaminaChanged.AddListener(OnStaminaUpdate);
+        GameManager.playerController.hunger.onHungerChanged.AddListener(OnHungerUpdate);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.timeManager?.onTickEvent.RemoveListener(UpdateClock);
+        GameManager.playerController?.health.onHealthChanged.RemoveListener(OnHealthUpdate);
+        GameManager.playerController?.stamina.onStaminaChanged.RemoveListener(OnStaminaUpdate);
+        GameManager.playerController?.hunger.onHungerChanged.RemoveListener(OnHungerUpdate);
     }
 
     public void OnHealthUpdate(int health, int maxHealth)

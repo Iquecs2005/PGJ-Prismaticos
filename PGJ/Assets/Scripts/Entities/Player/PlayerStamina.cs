@@ -15,8 +15,8 @@ public class PlayerStamina : MonoBehaviour
     [Header("Aceleracao")]
     [SerializeField] private float sprintMultiplier = 1.8f;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent<float, float> onStaminaChanged;
+    [field: Header("Events")]
+    [field: SerializeField] public UnityEvent<float, float> onStaminaChanged { get; private set; }
 
     public float CurrentStamina { get; private set; }
     public float MaxStamina => maxStamina;

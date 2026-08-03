@@ -4,59 +4,63 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class GameOverManager : MonoBehaviour
 {
-    [Header("UI")]
-    [SerializeField] private GameObject gameOverPanel;
+    [Header("GameOver References")]
+    [SerializeField] private GameObject holder;
+    [SerializeField] private Image backgroundPanel;
 
-    [Header("Imagens de morte (objetos separados)")]
-    [SerializeField] private GameObject playerDeathImage;
-    [SerializeField] private GameObject flapDeathImage;
-
-    public static GameOverManager Instance { get; private set; }
+    [Header("GameOver Variables")]
+    [SerializeField] private Sprite playerDeathImage;
+    [SerializeField] private Sprite flapDeathImage;
+    [SerializeField] private string mainMenuScene;
 
     private bool isGameOver;
 
-    private void Awake()
+    private void Start()
     {
-        Instance = this;
+        if (holder != null)
+            holder.SetActive(false);
+    }
 
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(false);
+    public void OnGameOver(GameOverType gameOverType) 
+    {
+        switch (gameOverType)
+        {
+            case GameOverType.FlapStarved:
+                ShowGameOver(flapDeathImage);
+                break;
+            case GameOverType.JackStarved: 
+                ShowGameOver(playerDeathImage);
+                break;
+            case GameOverType.JackWasEaten:
+                ShowGameOver(playerDeathImage);
+                break;
+        }
+    }
 
-        if (playerDeathImage != null)
-            playerDeathImage.SetActive(false);
+    public void MainMenu() 
+    {
+        SceneManager.LoadScene(mainMenuScene);
+    }
 
-        if (flapDeathImage != null)
-            flapDeathImage.SetActive(false);
-    }
-    public void OnPlayerStarved()
+    public void Restart() 
     {
-        ShowGameOver(playerDeathImage);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void OnPlayerDied()
-    {
-        ShowGameOver(playerDeathImage);
-    }
-    public void OnFlapStarved()
-    {
-        ShowGameOver(flapDeathImage);
-    }
-    private void ShowGameOver(GameObject deathImage)
+
+    private void ShowGameOver(Sprite deathImage)
     {
         if (isGameOver)
             return;
 
+        backgroundPanel.sprite = deathImage;
         isGameOver = true;
 
-        if (playerDeathImage != null)
-            playerDeathImage.SetActive(deathImage == playerDeathImage);
+        holder.SetActive(true);
 
-        if (flapDeathImage != null)
-            flapDeathImage.SetActive(deathImage == flapDeathImage);
-
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -68,9 +72,9 @@ public class GameOverManager : MonoBehaviour
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
             Restart();
     }
-    private void Restart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+}
+
+public enum GameOverType 
+{
+    FlapStarved, JackStarved, JackWasEaten
 }

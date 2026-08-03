@@ -24,6 +24,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         currentHour = startingHour;
+        onTickEvent.Invoke();
     }
 
     private void Update()

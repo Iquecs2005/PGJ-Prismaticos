@@ -63,10 +63,9 @@ public class FlapHunger : MonoBehaviour
     }
     private void OnStarvation()
     {
-        print("Flap starved");
         dead = true;
         onStarved?.Invoke();
-        if (GameOverManager.Instance != null)
-            GameOverManager.Instance.OnFlapStarved();
+        
+        GameManager.gameOverManager?.OnGameOver(GameOverType.FlapStarved);
     }
 }

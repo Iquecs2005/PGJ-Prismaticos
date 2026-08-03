@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,10 +10,17 @@ public class GameManager : MonoBehaviour
     private TimeManager _timeManager;
     private PlayerController _playerController;
     private CameraController _cameraController;
+    private GameOverManager _gameOverManager;
+    private WinManager _winManager;
 
     public static TimeManager timeManager => GetTimeManager();
     public static PlayerController playerController => GetPlayerController();
     public static CameraController cameraController => GetCameraController();
+    public static GameOverManager gameOverManager => GetGameOverManager();
+    public static WinManager winManager => GetWinManager();
+
+    public static UnityEvent OnGameOverEvent { get; private set; }
+    public static UnityEvent OnWinEvent { get; private set; }
 
     private void Awake()
     {
@@ -48,5 +56,25 @@ public class GameManager : MonoBehaviour
         if (instance._cameraController == null)
             instance._cameraController = FindObjectOfType<CameraController>();
         return instance._cameraController;
+    }
+
+    private static GameOverManager GetGameOverManager() 
+    {
+        if (instance == null)
+            return null;
+
+        if (instance._gameOverManager == null)
+            instance._gameOverManager = FindObjectOfType<GameOverManager>();
+        return instance._gameOverManager;
+    }
+
+    private static WinManager GetWinManager()
+    {
+        if (instance == null)
+            return null;
+
+        if (instance._winManager == null)
+            instance._winManager = FindObjectOfType<WinManager>();
+        return instance._winManager;
     }
 }

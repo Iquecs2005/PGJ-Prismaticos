@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +20,16 @@ public class PauseMenu : MonoBehaviour
         if (holder != null)
             holder.SetActive(false);
         DefinirPause(false);
+    }
+
+    private void OnEnable()
+    {
+        GameManager.playerController.input.onPauseAction.AddListener(TogglePause);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.playerController?.input.onPauseAction.RemoveListener(TogglePause);
     }
 
     public void TogglePause()

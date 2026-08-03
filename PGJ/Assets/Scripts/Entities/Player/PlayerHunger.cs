@@ -12,8 +12,8 @@ public class PlayerHunger : MonoBehaviour
     [SerializeField] private float hungerPerSecond = 1f;
     [SerializeField] private float hungerPerFood = 50;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent<float, float> onHungerChanged;
+    [field: Header("Events")]
+    [field: SerializeField] public UnityEvent<float, float> onHungerChanged { get; private set; }
 
     [SerializeField] private UnityEvent onStarved;
 
@@ -43,6 +43,7 @@ public class PlayerHunger : MonoBehaviour
         if (!hasStarved && CurrentHunger >= maxHunger)
         {
             hasStarved = true;
+            GameManager.gameOverManager?.OnGameOver(GameOverType.JackStarved);
             onStarved?.Invoke();
         }
         else if (CurrentHunger < maxHunger)

@@ -14,7 +14,7 @@ public class HealthController : MonoBehaviour
     public UnityEvent<int> OnHealed;
     public UnityEvent OnDeath;
 
-    public UnityEvent<int, int> OnHealthChanged;
+    public UnityEvent<int, int> onHealthChanged;
 
     public UnityEvent OnInvincibilityStarted;
 
@@ -28,7 +28,7 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         CurrentHealth = maxHealth;
-        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        onHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
     private void Update()
     {
@@ -37,13 +37,11 @@ public class HealthController : MonoBehaviour
     }
     public virtual void TakeDamage(HitInformation hit)
     {
-        print($"{hit.damage} from {hit.damageDealer} by {hit.damageOrigin}");
-
         if (hit.damage <= 0 || IsDead || IsInvincible) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - hit.damage, 0);
         OnDamageTaken?.Invoke(hit);
-        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        onHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (CurrentHealth <= 0)
         {
@@ -63,19 +61,20 @@ public class HealthController : MonoBehaviour
 
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
         OnHealed?.Invoke(amount);
-        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        onHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
     public virtual void Kill()
     {
         if (IsDead)
             return;
         CurrentHealth = 0;
-        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        onHealthChanged?.Invoke(CurrentHealth, maxHealth);
         Die();
     }
     protected virtual void Die()
     {
         OnDeath?.Invoke();
-        gameObject.SetActive(false);
+
+        Destroy(gameObject);
     }
 }

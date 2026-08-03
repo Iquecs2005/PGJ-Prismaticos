@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000f743c63f
+  m_ApplyToSortingLayers: 99530f4a00000000f743c63f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 2070811559938345489}
   - component: {fileID: 7015666827802270903}
   - component: {fileID: 500102234690487811}
-  - component: {fileID: 3642070343650777314}
+  - component: {fileID: 1575974525123789123}
   - component: {fileID: 1388139274871560033}
   - component: {fileID: 64925031747909448}
   - component: {fileID: 2271325317191799348}
@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 6942944216899276367}
   - component: {fileID: 434351953681500509}
   - component: {fileID: 7291203558086004264}
+  - component: {fileID: 3594499308919127554}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -720,7 +721,11 @@ MonoBehaviour:
   <col>k__BackingField: {fileID: 3475373091909483469}
   <bodySpriteRenderer>k__BackingField: {fileID: 5692470478601368369}
   <armSpriteRenderer>k__BackingField: {fileID: 7891417015969021955}
+  <health>k__BackingField: {fileID: 1575974525123789123}
+  <stamina>k__BackingField: {fileID: 434351953681500509}
+  <hunger>k__BackingField: {fileID: 7291203558086004264}
   <inventory>k__BackingField: {fileID: 1283818774743586590}
+  <input>k__BackingField: {fileID: 9218515127231301115}
 --- !u!114 &500102234690487811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,7 +759,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3642070343650777314
+--- !u!114 &1575974525123789123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -763,7 +768,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7476819595610973635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe09bb97a9ecacd468386376b95e05e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dbc6d55f034fd34da694b9ff86fd5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
@@ -777,7 +782,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  OnHealthChanged:
+  onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   OnInvincibilityStarted:
@@ -980,19 +985,7 @@ MonoBehaviour:
         m_CallState: 2
   <onPauseAction>k__BackingField:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   <onEatAction>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -1200,21 +1193,9 @@ MonoBehaviour:
   regenDelay: 1
   minStaminaToSprint: 5
   sprintMultiplier: 1.8
-  onStaminaChanged:
+  <onStaminaChanged>k__BackingField:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7291203558086004264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,21 +1212,9 @@ MonoBehaviour:
   maxHunger: 100
   hungerPerSecond: 1
   hungerPerFood: 50
-  onHungerChanged:
+  <onHungerChanged>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 434351953681500509}
         m_TargetAssemblyTypeName: PlayerStamina, Assembly-CSharp
         m_MethodName: SetCurrentMaxStamina
@@ -1260,19 +1229,24 @@ MonoBehaviour:
         m_CallState: 2
   onStarved:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3642070343650777314}
-        m_TargetAssemblyTypeName: HealthController, Assembly-CSharp
-        m_MethodName: Kill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &3594499308919127554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0d07c646da7e24a9ca7066f7fe1647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxGroup: {fileID: 11400000, guid: 9d6130b38904bcb4bbedc7a8e15f41ed, type: 2}
+  playOnStart: 1
+  directional: 0
+  audioPosition: {x: 0, y: 0}
+  audioParent: {fileID: 1204561731332380637}
 --- !u!1 &7689505124147020034
 GameObject:
   m_ObjectHideFlags: 0

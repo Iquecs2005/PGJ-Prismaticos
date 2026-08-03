@@ -8,14 +8,14 @@ public class MainMenu : MonoBehaviour
     [Header("Paineis")]
     [SerializeField] private GameObject painelPrincipal;
     [SerializeField] private GameObject painelOpcoes;
+    [SerializeField] private GameObject painelCreditos;
 
     [Header("Cena")]
     [SerializeField] private string cenaJogo = "AreaInicial";
 
     private void Start()
     {
-        if (painelOpcoes != null) painelOpcoes.SetActive(false);
-        if (painelPrincipal != null) painelPrincipal.SetActive(true);
+        OpenMainPanel();
     }
 
     public void AoBotaoIniciar()
@@ -23,16 +23,25 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(cenaJogo);
     }
 
-    public void AoBotaoOpcoes()
+    public void OpenMainPanel()
     {
-        painelOpcoes.SetActive(true);
-        painelPrincipal.SetActive(false);
+        painelPrincipal.SetActive(true);
+        painelOpcoes.SetActive(false);
+        painelCreditos.SetActive(false);
     }
 
-    public void AoFecharOpcoes()
+    public void OpenOptions()
     {
+        painelPrincipal.SetActive(false);
+        painelOpcoes.SetActive(true);
+        painelCreditos.SetActive(false);
+    }
+
+    public void OpenCredits() 
+    {
+        painelPrincipal.SetActive(false);
         painelOpcoes.SetActive(false);
-        painelPrincipal.SetActive(true);
+        painelCreditos.SetActive(true);
     }
 
     public void AoBotaoSair()

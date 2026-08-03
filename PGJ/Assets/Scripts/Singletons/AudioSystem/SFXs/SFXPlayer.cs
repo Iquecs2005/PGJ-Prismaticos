@@ -6,9 +6,16 @@ public class SFXPlayer : MonoBehaviour
 {
     [SerializeField] private SFXGroup sfxGroup;
 
+    [SerializeField] private bool playOnStart;
     [SerializeField] private bool directional;
     [SerializeField] private Vector2 audioPosition;
     [SerializeField] private Transform audioParent;
+
+    private void Start()
+    {
+        if (playOnStart)
+            Play();
+    }
 
     public void Play() 
     {

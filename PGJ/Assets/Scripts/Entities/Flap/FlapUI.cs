@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FlapUI : MonoBehaviour
 {
     [SerializeField] private FlapHunger flapHunger;
+    [SerializeField] private Slider hungrySlider;
     [SerializeField] private Image image;
 
     [SerializeField] private Sprite happyFlapSprite;
@@ -21,6 +22,8 @@ public class FlapUI : MonoBehaviour
             return;
 
         float ratio = 1 - flapHunger.GetHungerRatio();
+
+        hungrySlider.value = ratio;
 
         if (ratio < starvingFlapRatio) 
         {
