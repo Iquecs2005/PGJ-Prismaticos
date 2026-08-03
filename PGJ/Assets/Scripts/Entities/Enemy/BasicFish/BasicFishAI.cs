@@ -45,6 +45,6 @@ public class BasicFishAI : RandomMovementAI
 
     public void OnDeath() 
     {
-        Instantiate(deadBody, transform.position, Quaternion.identity);
+        Instantiate(deadBody, transform.position, transform.rotation);
     }
 }

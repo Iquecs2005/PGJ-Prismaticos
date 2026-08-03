@@ -30,7 +30,7 @@ public class RandomSFXPlayer : MonoBehaviour
                 continue;
 
             if (positional)
-                SFXManager.PlaySFX(sfxGroup, transform.position);
+                SFXManager.PlaySFX(sfxGroup, transform.position, transform);
             else
                 SFXManager.PlaySFX(sfxGroup);
         }

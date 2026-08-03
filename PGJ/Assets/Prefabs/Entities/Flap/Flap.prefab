@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHunger: 90
-  hungerPerSecond: 1
-  hungerPerFood: 50
+  hungerPerSecond: 0.7
+  hungerPerFood: 70
   foodItemType: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
   onStarved:
     m_PersistentCalls:

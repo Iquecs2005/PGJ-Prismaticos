@@ -22,25 +22,39 @@ public class PlayerHUD : MonoBehaviour
 
     public void OnHealthUpdate(int health, int maxHealth)
     {
-        int heartCount = heartIcons.Length;
-        int filled = maxHealth > 0
-            ? Mathf.RoundToInt((float)health / maxHealth * heartCount)
-            : 0;
-        filled = Mathf.Clamp(filled, 0, heartCount);
-
-        Debug.Log($"[PlayerHUD] health={health}/{maxHealth} | heartCount={heartCount} | filled={filled} | fullHeart={(fullHeart ? fullHeart.name : "NULL")} | emptyHeart={(emptyHeart ? emptyHeart.name : "NULL")}");
-
-        for (int i = 0; i < heartCount; i++)
+        for (int i = 0; i < heartIcons.Length; i++) 
         {
-            if (heartIcons[i] == null)
+            if (i < health) 
             {
-                Debug.LogWarning($"[PlayerHUD] heartIcons[{i}] esta NULL");
-                continue;
+                heartIcons[i].sprite = fullHeart;
             }
-
-            heartIcons[i].sprite = i < filled ? fullHeart : emptyHeart;
-            Debug.Log($"[PlayerHUD] heart {i} ({heartIcons[i].name}) -> {(heartIcons[i].sprite ? heartIcons[i].sprite.name : "NULL")}");
+            else 
+            {
+                heartIcons[i].sprite = emptyHeart;
+            }
         }
+
+
+        //int filled = maxHealth > 0
+        //int heartCount = heartIcons.Length;
+        //int filled = maxHealth > 0
+        //    ? Mathf.RoundToInt((float)health / maxHealth * heartCount)
+        //    : 0;
+        //filled = Mathf.Clamp(filled, 0, heartCount);
+
+        //Debug.Log($"[PlayerHUD] health={health}/{maxHealth} | heartCount={heartCount} | filled={filled} | fullHeart={(fullHeart ? fullHeart.name : "NULL")} | emptyHeart={(emptyHeart ? emptyHeart.name : "NULL")}");
+
+        //for (int i = 0; i < heartCount; i++)
+        //{
+        //    if (heartIcons[i] == null)
+        //    {
+        //        Debug.LogWarning($"[PlayerHUD] heartIcons[{i}] esta NULL");
+        //        continue;
+        //    }
+
+        //    heartIcons[i].sprite = i < filled ? fullHeart : emptyHeart;
+        //    Debug.Log($"[PlayerHUD] heart {i} ({heartIcons[i].name}) -> {(heartIcons[i].sprite ? heartIcons[i].sprite.name : "NULL")}");
+        //}
     }
     public void OnStaminaUpdate(float stamina, float maxStamina)
     {

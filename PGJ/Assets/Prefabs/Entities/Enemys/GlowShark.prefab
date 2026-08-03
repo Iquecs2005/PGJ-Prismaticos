@@ -427,8 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxGroup: {fileID: 11400000, guid: 7592577a6b9d7fd4791ec34cf1e9c9c8, type: 2}
-  minInterval: 3
-  maxInterval: 8
+  minInterval: 5
+  maxInterval: 12
   positional: 1
 --- !u!4 &8412919776493766419 stripped
 Transform:
