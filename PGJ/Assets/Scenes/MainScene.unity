@@ -4595,6 +4595,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 8944712895864550638, guid: eb9015537a39e9946a7b1e4837c0217a, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944712895864550638, guid: eb9015537a39e9946a7b1e4837c0217a, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1961608310}
+    - target: {fileID: 8944712895864550638, guid: eb9015537a39e9946a7b1e4837c0217a, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFlapStarved
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944712895864550638, guid: eb9015537a39e9946a7b1e4837c0217a, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOverManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944712895864550638, guid: eb9015537a39e9946a7b1e4837c0217a, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11434,8 +11454,28 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1961608310}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlayerDied
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11450,12 +11490,40 @@ PrefabInstance:
       value: OnHealthUpdate
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOverManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerHUD, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1961608310}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnPlayerDied
       objectReference: {fileID: 0}
     - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: onHungerChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11464,6 +11532,14 @@ PrefabInstance:
     - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: onHungerChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnHungerUpdate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameOverManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291203558086004264, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: onStarved.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: m_Name
