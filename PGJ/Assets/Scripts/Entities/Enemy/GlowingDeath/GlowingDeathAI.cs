@@ -20,5 +20,7 @@ public class GlowingDeathAI : BaseAI
     public void OnDeath() 
     {
         print("You win");
+        if (WinManager.Instance != null)
+            WinManager.Instance.Win();
     }
 }
