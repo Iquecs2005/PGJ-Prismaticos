@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6583217003293776709}
   - component: {fileID: 4576801352961451099}
+  - component: {fileID: 1792497683000323746}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -48,9 +49,35 @@ MonoBehaviour:
   endingHour: 24
   stepDurationMinute: 30
   tickDuration: 15
-  onTickEvent:
+  <onTickEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
-  onTimeEndEvent:
+  <onTimeEndEvent>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1792497683000323746}
+        m_TargetAssemblyTypeName: GlowingDeathSpawner, Assembly-CSharp
+        m_MethodName: SpawnGlowingDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1792497683000323746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893122047913234910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c100a86aa836964499d8396449af27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowingDeathPrefab: {fileID: 6807329388985534092, guid: 2afacd3807fb3c44b8f6318666aefc7e, type: 3}
+  possibleSpawnPoints: []

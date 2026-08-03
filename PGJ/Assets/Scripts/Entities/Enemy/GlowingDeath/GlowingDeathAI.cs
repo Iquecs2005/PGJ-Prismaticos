@@ -16,4 +16,9 @@ public class GlowingDeathAI : BaseAI
         Vector2 dir = prey.transform.position - transform.position;
         controller.movement.SetMoveInput(dir);
     }
+
+    public void OnDeath() 
+    {
+        print("You win");
+    }
 }

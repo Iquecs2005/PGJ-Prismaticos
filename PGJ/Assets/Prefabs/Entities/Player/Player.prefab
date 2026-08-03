@@ -602,7 +602,7 @@ MonoBehaviour:
   firePoint: {fileID: 5937401980206152764}
   speed: 18
   damage: 5
-  cooldown: 0.35
+  cooldown: 1
   hittableLayers:
     serializedVersion: 2
     m_Bits: 513
