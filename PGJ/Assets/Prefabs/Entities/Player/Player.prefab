@@ -550,6 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8480772748787731519}
   - component: {fileID: 7891417015969021955}
+  - component: {fileID: 5387727095057710484}
   m_Layer: 0
   m_Name: ArmSprite
   m_TagString: Untagged
@@ -624,6 +625,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5387727095057710484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6937975605832347571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d6f3afc7d439e4da63f925288060b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 885ff23466dd4c246ae66bc438e4f087, type: 2}
+  duration: 0.125
+  spriteRenderer: {fileID: 7891417015969021955}
 --- !u!1 &7476819595610973635
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,17 +653,17 @@ GameObject:
   - component: {fileID: 7015666827802270903}
   - component: {fileID: 500102234690487811}
   - component: {fileID: 1575974525123789123}
+  - component: {fileID: 434351953681500509}
+  - component: {fileID: 7291203558086004264}
   - component: {fileID: 1388139274871560033}
   - component: {fileID: 64925031747909448}
   - component: {fileID: 2271325317191799348}
   - component: {fileID: 1283818774743586590}
   - component: {fileID: 6865784329104334830}
   - component: {fileID: 8654207241976710847}
+  - component: {fileID: 3761593343181813494}
   - component: {fileID: 9218515127231301115}
   - component: {fileID: 6942944216899276367}
-  - component: {fileID: 434351953681500509}
-  - component: {fileID: 7291203558086004264}
-  - component: {fileID: 3594499308919127554}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -775,7 +791,31 @@ MonoBehaviour:
   invincibilityDuration: 0.75
   OnDamageTaken:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1843481973387627623}
+        m_TargetAssemblyTypeName: SimpleFlash, Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5387727095057710484}
+        m_TargetAssemblyTypeName: SimpleFlash, Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealed:
     m_PersistentCalls:
       m_Calls: []
@@ -788,7 +828,7 @@ MonoBehaviour:
   OnInvincibilityStarted:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1388139274871560033
+--- !u!114 &434351953681500509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -796,6 +836,49 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7476819595610973635}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1301b6a7ba76dc49be193c97fd4f50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100
+  drainPerSecond: 25
+  regenPerSecond: 15
+  regenDelay: 1
+  minStaminaToSprint: 5
+  sprintMultiplier: 1.8
+  <onStaminaChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7291203558086004264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567ea53e767836a44974394bdcaafbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodItemType: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
+  maxHunger: 100
+  hungerPerSecond: 1
+  hungerPerFood: 50
+  <onHungerChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  onStarved:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1388139274871560033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c7df5d7b3e93f54f96f5b80b43a8e24, type: 3}
   m_Name: 
@@ -905,6 +988,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1999218536235640598}
+--- !u!114 &3761593343181813494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0d07c646da7e24a9ca7066f7fe1647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxGroup: {fileID: 11400000, guid: 9d6130b38904bcb4bbedc7a8e15f41ed, type: 2}
+  playOnStart: 1
+  directional: 0
+  audioPosition: {x: 0, y: 0}
+  audioParent: {fileID: 1204561731332380637}
 --- !u!114 &9218515127231301115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,78 +1275,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &434351953681500509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7476819595610973635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1301b6a7ba76dc49be193c97fd4f50e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxStamina: 100
-  drainPerSecond: 25
-  regenPerSecond: 15
-  regenDelay: 1
-  minStaminaToSprint: 5
-  sprintMultiplier: 1.8
-  <onStaminaChanged>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &7291203558086004264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7476819595610973635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567ea53e767836a44974394bdcaafbf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodItemType: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
-  maxHunger: 100
-  hungerPerSecond: 1
-  hungerPerFood: 50
-  <onHungerChanged>k__BackingField:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434351953681500509}
-        m_TargetAssemblyTypeName: PlayerStamina, Assembly-CSharp
-        m_MethodName: SetCurrentMaxStamina
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onStarved:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3594499308919127554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7476819595610973635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0d07c646da7e24a9ca7066f7fe1647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxGroup: {fileID: 11400000, guid: 9d6130b38904bcb4bbedc7a8e15f41ed, type: 2}
-  playOnStart: 1
-  directional: 0
-  audioPosition: {x: 0, y: 0}
-  audioParent: {fileID: 1204561731332380637}
 --- !u!1 &7689505124147020034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1286,7 @@ GameObject:
   - component: {fileID: 6731715447621039708}
   - component: {fileID: 5692470478601368369}
   - component: {fileID: 1999218536235640598}
+  - component: {fileID: 1843481973387627623}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -1354,6 +1383,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1843481973387627623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7689505124147020034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d6f3afc7d439e4da63f925288060b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 885ff23466dd4c246ae66bc438e4f087, type: 2}
+  duration: 0.125
+  spriteRenderer: {fileID: 5692470478601368369}
 --- !u!1 &8793818850778558272
 GameObject:
   m_ObjectHideFlags: 0

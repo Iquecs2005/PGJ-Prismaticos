@@ -10682,6 +10682,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+--- !u!1 &1380511395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1380511396}
+  - component: {fileID: 1380511399}
+  - component: {fileID: 1380511398}
+  m_Layer: 0
+  m_Name: FlapUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1380511396
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380511395}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -75, y: 50}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 1, y: 0}
+--- !u!222 &1380511398
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380511395}
+  m_CullTransparentMesh: 1
+--- !u!114 &1380511399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380511395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d918654523ff294438bf721c1c8bc571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flapHunger: {fileID: 1969031567}
+  hungrySlider: {fileID: 0}
+  image: {fileID: 0}
+  happyFlapSprite: {fileID: 81816988, guid: 5ee34e5cec29c264a83871dbfbf9a81a, type: 3}
+  fineFlapSprite: {fileID: -1381547794, guid: fd580841c080c0b4fb9ebb5b37d9f2e3, type: 3}
+  starvingFlapSprite: {fileID: -1048446514, guid: b9fd5f32d4831a14a8e1c43311e24cf5, type: 3}
+  fineFlapRatio: 0.66
+  starvingFlapRatio: 0.33
 --- !u!1001 &1391566094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13793,3 +13858,4 @@ SceneRoots:
   - {fileID: 2067468387}
   - {fileID: 1984762800}
   - {fileID: 708889056}
+  - {fileID: 1380511396}
