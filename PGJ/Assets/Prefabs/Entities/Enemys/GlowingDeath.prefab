@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1558358975704417325, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558358975704417325, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
+      propertyPath: waterDrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558358975704417325, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
+      propertyPath: acceleration
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 2493963399619646433, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.72
