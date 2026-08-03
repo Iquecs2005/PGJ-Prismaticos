@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2251707063b471749a6a389f497a5032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHour: 6
+  startingHour: 8
   endingHour: 24
   stepDurationMinute: 30
-  tickDuration: 10
+  tickDuration: 8
   <onTickEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
