@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ccd9b3516e311499f065b39773b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHunger: 300
+  maxHunger: 90
   hungerPerSecond: 1
   hungerPerFood: 50
   foodItemType: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}

@@ -38,6 +38,11 @@ public class FlapHunger : MonoBehaviour
         }
     }
 
+    public float GetHungerRatio() 
+    {
+        return currentHunger / maxHunger;
+    }
+
     private void ApplyHunger() 
     {
         if (dead)
