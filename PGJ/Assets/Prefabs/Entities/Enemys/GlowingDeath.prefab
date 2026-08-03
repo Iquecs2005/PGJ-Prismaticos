@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 3830037061813843173, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
       propertyPath: spriteRenderer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6147615806464079487}
     - target: {fileID: 4233932522901586992, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
       propertyPath: m_Size.x
       value: 7.375562
@@ -223,6 +223,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5f336758b2cf34784c2ca5f6200969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &6147615806464079487 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8752793319086874151, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
+  m_PrefabInstance: {fileID: 3181954934183290968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6807329388985534092 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8237344458757418708, guid: e6f176f9bd94b8141b7d7f3b7a717392, type: 3}
