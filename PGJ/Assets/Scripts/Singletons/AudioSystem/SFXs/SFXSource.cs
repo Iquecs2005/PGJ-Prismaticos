@@ -20,6 +20,12 @@ public class SFXSource : MonoBehaviour
 
     public void Play(SFXData sfx, bool directional = false)
     {
+        if (sfx == null || sfx.clip == null)
+        {
+            Debug.LogWarning("SFXSource.Play: clip nulo .");
+            Destroy(gameObject);
+            return;
+        }
         audioSource.Stop();
 
         audioSource.clip = sfx.clip;

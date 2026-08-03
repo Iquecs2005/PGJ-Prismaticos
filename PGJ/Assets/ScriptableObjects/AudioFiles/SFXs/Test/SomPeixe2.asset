@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ae78156027ec3340979bee7d8f8db36, type: 3}
-  m_Name: Coleta
+  m_Name: SomPeixe2
   m_EditorClassIdentifier: 
   sfxVariations:
-  - clip: {fileID: 8300000, guid: f3e29f49c3c76a1489c01b51c8c51896, type: 3}
-    volume: 0.105
+  - clip: {fileID: 8300000, guid: 15cacdc43cafd0e4788dd8481b840eaa, type: 3}
+    volume: 0.044
     minPitchShift: 0.21
-    maxPitchShift: 1.15
+    maxPitchShift: 0.98
