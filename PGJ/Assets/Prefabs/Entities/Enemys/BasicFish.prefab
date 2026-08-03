@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 8813425665429686533}
   - component: {fileID: 8623621127716501327}
   - component: {fileID: 5461560340099293551}
+  - component: {fileID: 1382930180596384106}
   m_Layer: 9
   m_Name: BasicFish
   m_TagString: Untagged
@@ -462,9 +463,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  invincibilityDuration: 0
   OnDamageTaken:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1382930180596384106}
+        m_TargetAssemblyTypeName: BarthaSzabolcs.Tutorial_SpriteFlash.SimpleFlash,
+          Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealed:
     m_PersistentCalls:
       m_Calls: []
@@ -483,3 +498,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInvincibilityStarted:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1382930180596384106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072766418970434395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d6f3afc7d439e4da63f925288060b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 885ff23466dd4c246ae66bc438e4f087, type: 2}
+  duration: 0.125
+  spriteRenderer: {fileID: 0}

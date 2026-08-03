@@ -11454,6 +11454,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -11470,13 +11474,29 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnPlayerDied
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1373933378}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 976331164}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Flash
+      objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -11490,11 +11510,19 @@ PrefabInstance:
       value: GameOverManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BarthaSzabolcs.Tutorial_SpriteFlash.SimpleFlash, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerHUD, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3642070343650777314, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
@@ -11556,6 +11584,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1373933361}
+    - targetCorrespondingSourceObject: {fileID: 7476819595610973635, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1373933378}
   m_SourcePrefab: {fileID: 100100000, guid: 23c1cae8a6a027346a802e9e6cc53097, type: 3}
 --- !u!1 &1373933360 stripped
 GameObject:
@@ -11576,6 +11607,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSFX: {fileID: 11400000, guid: 9d6130b38904bcb4bbedc7a8e15f41ed, type: 2}
   positional: 1
+--- !u!114 &1373933378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373933360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d6f3afc7d439e4da63f925288060b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 885ff23466dd4c246ae66bc438e4f087, type: 2}
+  duration: 0.2
+  spriteRenderer: {fileID: 0}
 --- !u!1 &1380511395
 GameObject:
   m_ObjectHideFlags: 0

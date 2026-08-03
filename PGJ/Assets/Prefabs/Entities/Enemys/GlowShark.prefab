@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1382930180596384106, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2774491881398113140, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -228,18 +232,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5146166509780054523}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3830037061813843173}
+    - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
@@ -247,11 +263,23 @@ PrefabInstance:
       value: OnHit
       objectReference: {fileID: 0}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Flash
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GlowSharkIA, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: BarthaSzabolcs.Tutorial_SpriteFlash.SimpleFlash, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
       propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461560340099293551, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+      propertyPath: OnDamageTaken.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5671987879269997122, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
@@ -370,6 +398,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 327205563002021486, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
   m_PrefabInstance: {fileID: 2744418158329984399}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3830037061813843173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1382930180596384106, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
+  m_PrefabInstance: {fileID: 2744418158329984399}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237344458757418708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d6f3afc7d439e4da63f925288060b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7539257957726711757 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5671987879269997122, guid: a7569f22be1202a42ba1d67bb733a0a2, type: 3}
