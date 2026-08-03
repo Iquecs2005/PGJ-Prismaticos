@@ -23,7 +23,7 @@ public class FlapHunger : MonoBehaviour
         if (dead) 
             return;
 
-        DynamicInventory inventory = GameManager.playerController.GetComponent<DynamicInventory>();
+        DynamicInventory inventory = GameManager.playerController.inventory;
         if (inventory == null)
             return;
 

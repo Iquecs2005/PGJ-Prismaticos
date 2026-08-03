@@ -6,9 +6,11 @@ using UnityEngine.Events;
 public class PlayerHunger : MonoBehaviour
 {
     [Header("Fome")]
+    [SerializeField] private ItemType foodItemType;
     [SerializeField] private float maxHunger = 100f;
 
-    [SerializeField] private float hungerPerTick = 1f;
+    [SerializeField] private float hungerPerSecond = 1f;
+    [SerializeField] private float hungerPerFood = 50;
 
     [Header("Events")]
     [SerializeField] private UnityEvent<float, float> onHungerChanged;
@@ -26,18 +28,13 @@ public class PlayerHunger : MonoBehaviour
     {
         CurrentHunger = 0f;
         onHungerChanged?.Invoke(CurrentHunger, maxHunger);
+    }
 
-        GameManager.timeManager.onTickEvent.AddListener(OnTick);
-    }
-    private void OnDestroy()
+    private void FixedUpdate()
     {
-        if (GameManager.timeManager != null)
-            GameManager.timeManager.onTickEvent.RemoveListener(OnTick);
+        AddHunger(hungerPerSecond * Time.deltaTime);
     }
-    private void OnTick()
-    {
-        AddHunger(hungerPerTick);
-    }
+
     public void AddHunger(float amount)
     {
         CurrentHunger = Mathf.Clamp(CurrentHunger + amount, 0f, maxHunger);
@@ -53,8 +50,20 @@ public class PlayerHunger : MonoBehaviour
             hasStarved = false;
         }
     }
-    public void Feed(float amount)
+
+    public void Eat()
     {
-        AddHunger(-Mathf.Abs(amount));
+        DynamicInventory inventory = GameManager.playerController.inventory;
+        if (inventory == null)
+            return;
+
+        if (inventory.RemoveItem(foodItemType, 1))
+        {
+            AddHunger(-hungerPerFood);
+        }
+        else
+        {
+            print("No food for you");
+        }
     }
 }

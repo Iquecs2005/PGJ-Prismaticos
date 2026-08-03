@@ -435,6 +435,8 @@ GameObject:
   - component: {fileID: 8654207241976710847}
   - component: {fileID: 9218515127231301115}
   - component: {fileID: 6942944216899276367}
+  - component: {fileID: 434351953681500509}
+  - component: {fileID: 7291203558086004264}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -506,6 +508,7 @@ MonoBehaviour:
   <col>k__BackingField: {fileID: 3475373091909483469}
   <bodySpriteRenderer>k__BackingField: {fileID: 5692470478601368369}
   <armSpriteRenderer>k__BackingField: {fileID: 6533663851219728187}
+  <inventory>k__BackingField: {fileID: 1283818774743586590}
 --- !u!114 &500102234690487811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7015666827802270903}
-  stamina: {fileID: 0}
+  stamina: {fileID: 434351953681500509}
   acceleration: 20
   maxSpeed: 8
   waterDrag: 4
@@ -706,19 +709,7 @@ MonoBehaviour:
         m_CallState: 2
   <onKnifeAction>k__BackingField:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1388139274871560033}
-        m_TargetAssemblyTypeName: KnifeAttack, Assembly-CSharp
-        m_MethodName: SwingKnife
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   <onHarpoonAction>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -755,7 +746,7 @@ MonoBehaviour:
   <onSprintAction>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 434351953681500509}
         m_TargetAssemblyTypeName: PlayerStamina, Assembly-CSharp
         m_MethodName: SetSprinting
         m_Mode: 0
@@ -772,7 +763,22 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: TogglePause
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <onEatAction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7291203558086004264}
+        m_TargetAssemblyTypeName: PlayerHunger, Assembly-CSharp
+        m_MethodName: Eat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -840,19 +846,7 @@ MonoBehaviour:
     m_ActionId: 9ba195c5-9f12-4850-b5a7-e504ff292ce0
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9218515127231301115}
-        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
-        m_MethodName: KnifeAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 6ff87099-1108-4160-bf40-8999cd4835f8
     m_ActionName: Player/Melee[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -947,11 +941,118 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 373b16fe-2f69-4d02-9f01-5f8099cbd2d8
     m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9218515127231301115}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: EatAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0b41f867-44f4-4e1b-9b38-23717cc4ab16
+    m_ActionName: Player/Eat[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &434351953681500509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1301b6a7ba76dc49be193c97fd4f50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100
+  drainPerSecond: 25
+  regenPerSecond: 15
+  regenDelay: 1
+  minStaminaToSprint: 5
+  sprintMultiplier: 1.8
+  onStaminaChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7291203558086004264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476819595610973635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567ea53e767836a44974394bdcaafbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodItemType: {fileID: 11400000, guid: 697ab2f014389934baba61421cd1895d, type: 2}
+  maxHunger: 100
+  hungerPerSecond: 1
+  hungerPerFood: 50
+  onHungerChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerHUD, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 434351953681500509}
+        m_TargetAssemblyTypeName: PlayerStamina, Assembly-CSharp
+        m_MethodName: SetCurrentMaxStamina
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onStarved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3642070343650777314}
+        m_TargetAssemblyTypeName: HealthController, Assembly-CSharp
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7689505124147020034
 GameObject:
   m_ObjectHideFlags: 0

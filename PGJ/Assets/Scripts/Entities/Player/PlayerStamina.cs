@@ -7,29 +7,19 @@ public class PlayerStamina : MonoBehaviour
 {
     [Header("Stamina")]
     [SerializeField] private float maxStamina = 100f;
-
     [SerializeField] private float drainPerSecond = 25f;
-
     [SerializeField] private float regenPerSecond = 15f;
-
     [SerializeField] private float regenDelay = 1f;
-
     [SerializeField] private float minStaminaToSprint = 5f;
 
     [Header("Aceleracao")]
     [SerializeField] private float sprintMultiplier = 1.8f;
-    
-    [Header("Fome")]
-    [SerializeField] private PlayerHunger hunger;
-
 
     [Header("Events")]
     [SerializeField] private UnityEvent<float, float> onStaminaChanged;
 
     public float CurrentStamina { get; private set; }
     public float MaxStamina => maxStamina;
-    public float EffectiveMaxStamina =>
-        hunger != null ? maxStamina * hunger.StaminaAvailableFactor : maxStamina;
     public bool IsSprinting { get; private set; }
 
     public float SpeedMultiplier => IsSprinting ? sprintMultiplier : 1f;
@@ -42,9 +32,11 @@ public class PlayerStamina : MonoBehaviour
 
     private bool sprintInputHeld;
     private float regenTimer;
+    private float currentMaxStamina;
 
     private void Start()
     {
+        currentMaxStamina = maxStamina;
         CurrentStamina = maxStamina;
         onStaminaChanged?.Invoke(CurrentStamina, maxStamina);
     }
@@ -73,12 +65,19 @@ public class PlayerStamina : MonoBehaviour
             {
                 regenTimer -= Time.deltaTime;
             }
-            else if (CurrentStamina < maxStamina)
+            else if (CurrentStamina < currentMaxStamina)
             {
                 CurrentStamina += regenPerSecond * Time.deltaTime;
-                CurrentStamina = Mathf.Min(maxStamina, CurrentStamina);
+                CurrentStamina = Mathf.Min(currentMaxStamina, CurrentStamina);
                 onStaminaChanged?.Invoke(CurrentStamina, maxStamina);
             }
         }
+    }
+
+    public void SetCurrentMaxStamina(float currentHunger, float maxHunger) 
+    {
+        float ratio = 1 - (currentHunger / maxHunger);
+        currentMaxStamina = maxStamina * ratio;
+        CurrentStamina = Mathf.Min(CurrentStamina, currentMaxStamina);
     }
 }

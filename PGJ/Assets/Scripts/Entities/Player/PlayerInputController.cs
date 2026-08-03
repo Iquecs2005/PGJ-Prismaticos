@@ -14,6 +14,7 @@ public class PlayerInputController : MonoBehaviour
     [field: SerializeField] public UnityEvent onInteractCanceled { get; private set; }
     [field: SerializeField] public UnityEvent<bool> onSprintAction { get; private set; }
     [field: SerializeField] public UnityEvent onPauseAction { get; private set; }
+    [field: SerializeField] public UnityEvent onEatAction { get; private set; }
 
     public void MoveAction(InputAction.CallbackContext context)
     {
@@ -56,6 +57,13 @@ public class PlayerInputController : MonoBehaviour
             onInteractAction.Invoke();
         else if (context.canceled)
             onInteractCanceled.Invoke();
+    }
+
+    public void EatAction(InputAction.CallbackContext context) 
+    {
+        if (PauseMenu.IsPaused) return;
+        if (context.performed)
+            onEatAction.Invoke();
     }
 
     public Vector2 MouseWorldPosition()

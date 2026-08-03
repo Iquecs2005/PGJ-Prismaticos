@@ -9,6 +9,8 @@ public class PlayerController : EntityController
     [field: SerializeField] public SpriteRenderer bodySpriteRenderer { get; private set; }
     [field: SerializeField] public SpriteRenderer armSpriteRenderer { get; private set; }
 
+    [field: SerializeField] public DynamicInventory inventory { get; private set; }
+
     public bool IsFacingRight { get; private set; } = true;
 
     void Start()
