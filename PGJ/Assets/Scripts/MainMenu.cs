@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TelaInicial : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     [Header("Paineis")]
     [SerializeField] private GameObject painelPrincipal;
