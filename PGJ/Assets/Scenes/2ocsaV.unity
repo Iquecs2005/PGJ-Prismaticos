@@ -8497,6 +8497,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1586600976897374523, guid: 53872efedc1908a4aa0dcecb1aaa4b90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1843114572, guid: ad0f3d8c881f27b46a94670f4bb17d63, type: 3}
     - target: {fileID: 2476526728821110738, guid: 53872efedc1908a4aa0dcecb1aaa4b90, type: 3}
       propertyPath: heartIcons.Array.data[1]
       value: 
