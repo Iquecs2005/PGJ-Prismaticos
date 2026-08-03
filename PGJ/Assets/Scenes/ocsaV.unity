@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  invincibilityDuration: 0
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
@@ -162,6 +163,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInvincibilityStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!212 &70727231

@@ -48,7 +48,7 @@ MonoBehaviour:
   startingHour: 6
   endingHour: 24
   stepDurationMinute: 30
-  tickDuration: 15
+  tickDuration: 10
   <onTickEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

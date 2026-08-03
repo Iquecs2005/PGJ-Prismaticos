@@ -17,6 +17,9 @@ public class FlapUI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (flapHunger == null)
+            return;
+
         float ratio = 1 - flapHunger.GetHungerRatio();
 
         if (ratio < starvingFlapRatio) 
