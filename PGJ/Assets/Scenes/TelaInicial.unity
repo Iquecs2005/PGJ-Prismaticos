@@ -1268,6 +1268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1200947020}
   - component: {fileID: 1200947019}
+  - component: {fileID: 1200947021}
   m_Layer: 0
   m_Name: Telainical
   m_TagString: Untagged
@@ -1289,7 +1290,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   painelPrincipal: {fileID: 1398209416}
   painelOpcoes: {fileID: 1624892063}
-  musicaMenu: {fileID: 11400000, guid: 3fa2fc7cbe6599249b7287d36cae91ca, type: 2}
   cenaJogo: MainScene
 --- !u!4 &1200947020
 Transform:
@@ -1306,6 +1306,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200947021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200947018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8ce67edf76f2f499040a1ca2ec34cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 11400000, guid: 3fa2fc7cbe6599249b7287d36cae91ca, type: 2}
+  startOnAwake: 1
 --- !u!1 &1398209416
 GameObject:
   m_ObjectHideFlags: 0

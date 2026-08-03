@@ -12,7 +12,10 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null) 
+        {
+            instance = this;
+        }
     }
 
     public static void PlayMusic(MusicData musicData, bool loop = true)
@@ -39,6 +42,7 @@ public class MusicManager : MonoBehaviour
 
         currentMusic = musicData.name;
         audioSource.clip = musicData.clip;
+        audioSource.volume = musicData.volume;
         audioSource.loop = loop;
 
         audioSource.Play();
@@ -53,6 +57,9 @@ public class MusicManager : MonoBehaviour
         }
 
         instance.musicSource.Stop();
+
+        instance.musicSource.clip = null;
+
         currentMusic = "";
     }
 }
